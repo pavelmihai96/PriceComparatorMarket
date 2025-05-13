@@ -1,0 +1,21 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P001,lapte zuzu,Zuzu,1,l,lactate,5/1/2025,5/7/2025,10
+P008,brânză telemea,Pilos,0.3,kg,lactate,5/1/2025,5/7/2025,15
+P020,spaghetti nr.5,Barilla,500,g,paste făinoase,5/3/2025,5/9/2025,20
+P034,cafea măcinată,Davidoff,0.25,kg,cafea,5/4/2025,5/10/2025,12
+P011,pâine albă,Lidl,500,g,panificație,5/2/2025,5/8/2025,5
+P014,roșii cherry,Lidl,250,g,legume și fructe,5/2/2025,5/8/2025,8
+P037,detergent lichid,Persil,2.5,l,produse de menaj,5/6/2025,5/12/2025,25
+P040,șampon păr gras,Head & Shoulders,400,ml,îngrijire personală,5/5/2025,5/11/2025,15
+P049,vin alb demisec,Jidvei,0.75,l,băuturi,5/1/2025,5/7/2025,10
+P052,ciocolată neagră 70%,Fin Carre,100,g,gustări,5/3/2025,5/9/2025,18
+P024,apă plată,Aqua Carpatica,2,l,băuturi,5/1/2025,5/7/2025,5
+P005,ouă mărimea M,Lidl,10,buc,ouă,5/4/2025,5/10/2025,7
+P017,piept pui,Lidl,1,kg,carne,5/2/2025,5/8/2025,6
+P028,ulei floarea-soarelui,Bunica,1,l,alimente de bază,5/5/2025,5/11/2025,10
+P046,piper negru măcinat,Kotanyi,50,g,condimente,5/6/2025,5/12/2025,12
+P031,biscuiți cu unt,Deluxe,0.2,kg,gustări,5/4/2025,5/10/2025,9
+P043,hârtie igienică 3 straturi,Zewa,10,role,produse de menaj,5/3/2025,5/9/2025,14
+P026,banane,Lidl,1,kg,legume și fructe,5/6/2025,5/12/2025,6
+P002,iaurt grecesc,Lidl,0.4,kg,lactate,5/5/2025,5/11/2025,11
+P014,roșii cherry,Lidl,250,g,legume și fructe,5/6/2025,5/12/2025,5
