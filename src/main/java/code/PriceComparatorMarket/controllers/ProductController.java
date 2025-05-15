@@ -1,11 +1,12 @@
 package code.PriceComparatorMarket.controllers;
 
-import code.PriceComparatorMarket.classes.Product;
+import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.services.ProductService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
