@@ -13,25 +13,28 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @Repository
-public class ProductCsvRepository implements CsvRepository<Product> {
+public class ProductRepository implements CsvRepository<Product> {
     private final CsvParser<Product> parser;
     private final Path folder;
 
-    public ProductCsvRepository(CsvParser<Product> parser, @Value("${csv.folder.path}") String folderPath) {
+    public ProductRepository(CsvParser<Product> parser, @Value("${csv.folder.path}") String folderPath) {
         this.parser = parser;
         this.folder = Path.of(folderPath);
     }
 
     @Override
-    public List<Product> loadAll() {
-        List<Product> results = new ArrayList<>();
+    public List<Product> loadAllProducts() {
+        List<Product> allProducts = new ArrayList<>();
         try (Stream<Path> paths = Files.walk(folder)) {
             paths.filter(Files::isRegularFile)
+                    .filter(p -> !p.toString().contains("discounts"))
                     .filter(p -> p.toString().endsWith(".csv"))
-                    .forEach(p -> results.addAll(parser.parse(p)));
+                    .forEach(p -> allProducts.addAll(parser.parse(p)));
+
+            //results.forEach(p -> p.addToLocalDate());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return results;
+        return allProducts;
     }
 }

@@ -15,14 +15,15 @@ public class BasketService {
     private final ProductService productService;
 
     public Map<String, List<Product>> optimizeBasket(List<String> products, LocalDate date) {
-        Map<String, List<Product>> split = new HashMap<>();
+        Map<String, List<Product>> listsOfProducts = new HashMap<>();
 
         for (String product : products) {
-            productService.findBestOffer(product, date).ifPresent(best -> {
-                split.computeIfAbsent(best.getStore(), k -> new ArrayList<>()).add(best);
+            productService.findBestOffer(product, date).ifPresent(
+            i -> {
+                listsOfProducts.computeIfAbsent(i.getStore(), j -> new ArrayList<>()).add(i);
             });
         }
 
-        return split;
+        return listsOfProducts;
     }
 }

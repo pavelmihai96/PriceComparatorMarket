@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,4 +22,14 @@ public class Product {
     private String currency;
     private LocalDate date;
     private String store;
+
+    //This is added because I want to store multiple dates into date variable
+    //both the date from filename and dates from csv's with discounts
+//    public void addToLocalDate(LocalDate date) {
+//        try {
+//            this.date.add(date);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
