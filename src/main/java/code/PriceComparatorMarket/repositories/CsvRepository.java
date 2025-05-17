@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface CsvRepository<T> {
-    List<T> loadAll();
+    List<T> loadAllProducts();
+
+    //List<T> loadProducts
 }

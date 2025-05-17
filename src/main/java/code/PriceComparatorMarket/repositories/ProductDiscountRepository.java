@@ -24,15 +24,22 @@ public class ProductDiscountRepository implements CsvRepository<ProductDiscount>
     }
 
     @Override
-    public List<ProductDiscount> loadAll() {
-        List<ProductDiscount> results = new ArrayList<>();
+    public List<ProductDiscount> loadAllProducts() {
+        List<ProductDiscount> allProducts = new ArrayList<>();
         try (Stream<Path> paths = Files.walk(folder)) {
             paths.filter(Files::isRegularFile)
+                    .filter(p -> p.toString().contains("discounts"))
                     .filter(p -> p.toString().endsWith(".csv"))
-                    .forEach(p -> results.addAll(parser.parse(p)));
+                    .forEach(p -> allProducts.addAll(parser.parse(p)));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return results;
+
+//        System.out.println("Loaded discounts: " + allProducts.size());
+//        allProducts.forEach(d -> System.out.println(
+//                "Discount loaded: " + d.getProductId() + ", " + d.getStore() + ", " + d.getFromDate() + " - " + d.getToDate() + "; " + d.getDate()
+//        ));
+
+        return allProducts;
     }
 }
