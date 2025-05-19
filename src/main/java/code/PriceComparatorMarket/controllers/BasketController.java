@@ -23,7 +23,7 @@ public class BasketController {
 
     //call to this endpoint will optimize the basket and return the lists with store info and best prices
     @PostMapping("/costEfficient")
-    public ResponseEntity<Map<String, List<Product>>> optimize(@RequestBody BasketRequest request) {
-        return ResponseEntity.ok(basketService.optimizeBasket(request.getProductIds(), request.getDate()));
+    public Map<String, List<Product>> optimize(@RequestBody BasketRequest request) {
+        return basketService.optimizeBasket(request.getProductIds(), request.getDate());
     }
 }
