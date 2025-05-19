@@ -35,9 +35,20 @@ public class ProductDiscountService {
 //                .findFirst()
 //                .ifPresent(d -> p.setPrice(p.getPrice() * (1 - d.getPercentageOfDiscount() / 100.0)));
 
-
+                //aplica discount pentru cel mai recent produs, si pare sa il ia pe primul in cazul in care sunt duplicate
                 listPD.stream()
                         .max(Comparator.comparing(ProductDiscount::getDate))
                         .ifPresent(d -> p.setPrice(p.getPrice() * (1 - d.getPercentageOfDiscount() / 100.0)));
+    }
+
+    public List<ProductDiscount> getHighestProductDiscounts(LocalDate date) {
+        List<ProductDiscount> listPD = productDiscountRepository.loadAllProducts().stream()
+                .filter(pd -> !pd.getFromDate().isAfter(date) && !pd.getToDate().isBefore(date))
+                .peek(pd -> System.out.println("Product after date filter: " + pd.getProductId() + ", " + pd.getFromDate() + ", " + pd.getToDate() + ", Date of file: " + pd.getDate()))
+                .collect(Collectors.toList());
+
+        return listPD.stream()
+                .sorted(Comparator.comparing(ProductDiscount::getPercentageOfDiscount).reversed())
+                .collect(Collectors.toList());
     }
 }
