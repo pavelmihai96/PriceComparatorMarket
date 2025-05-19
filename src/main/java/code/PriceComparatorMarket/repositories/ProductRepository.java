@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -36,5 +37,10 @@ public class ProductRepository implements CsvRepository<Product> {
             e.printStackTrace();
         }
         return allProducts;
+    }
+
+    @Override
+    public List<Product> loadLastProducts(Date date, Double xHours) {
+        return null;
     }
 }

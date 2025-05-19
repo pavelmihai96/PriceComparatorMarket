@@ -1,0 +1,13 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P003,iaurt grecesc,Olympus,0.4,kg,lactate,5/1/2025,5/7/2025,10
+P009,brânză telemea,Hochland,0.3,kg,lactate,5/1/2025,5/7/2025,10
+P018,piept pui,Agricola,1,kg,carne,5/2/2025,5/8/2025,12
+P020,spaghetti nr.5,Barilla,500,g,paste făinoase,5/3/2025,5/9/2025,18
+P035,cafea măcinată,Jacobs,0.25,kg,cafea,5/4/2025,5/10/2025,10
+P038,detergent lichid,Ariel,2.5,l,produse de menaj,5/1/2025,5/7/2025,22
+P041,șampon păr gras,Elseve,400,ml,îngrijire personală,5/2/2025,5/8/2025,12
+P050,vin alb demisec,Recas,0.75,l,băuturi,5/3/2025,5/9/2025,8
+P053,ciocolată neagră 70%,Heidi,100,g,gustări,5/4/2025,5/10/2025,15
+P056,cartofi albi,Generic,1,kg,legume și fructe,5/1/2025,5/7/2025,5
+P060,suc portocale,Cappy,1,l,băuturi,5/2/2025,5/8/2025,7
+P062,cașcaval,Delaco,0.25,kg,lactate,5/3/2025,5/9/2025,10

@@ -20,7 +20,10 @@ public class Product {
     private String packageUnit;
     private Double price;
     private String currency;
+
+    //date stored from filename
     private LocalDate date;
+
     private String store;
 
     //This is added because I want to store multiple dates into date variable

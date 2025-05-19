@@ -5,12 +5,12 @@ import code.PriceComparatorMarket.models.ProductDiscount;
 import code.PriceComparatorMarket.repositories.CsvRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -41,14 +41,44 @@ public class ProductDiscountService {
                         .ifPresent(d -> p.setPrice(p.getPrice() * (1 - d.getPercentageOfDiscount() / 100.0)));
     }
 
-    public List<ProductDiscount> getHighestProductDiscounts(LocalDate date) {
+    public ResponseEntity<?> getHighestProductDiscounts(LocalDate date) {
         List<ProductDiscount> listPD = productDiscountRepository.loadAllProducts().stream()
                 .filter(pd -> !pd.getFromDate().isAfter(date) && !pd.getToDate().isBefore(date))
                 .peek(pd -> System.out.println("Product after date filter: " + pd.getProductId() + ", " + pd.getFromDate() + ", " + pd.getToDate() + ", Date of file: " + pd.getDate()))
                 .collect(Collectors.toList());
 
-        return listPD.stream()
+        List<ProductDiscount> listPDSorted = listPD.stream()
                 .sorted(Comparator.comparing(ProductDiscount::getPercentageOfDiscount).reversed())
                 .collect(Collectors.toList());
+
+        //return a message if not discounts are available; and discounts otherwise
+        if (listPDSorted.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "No discounts were found on date: " + date.toString()));
+        } else  {
+            return ResponseEntity.ok().body(listPDSorted);
+        }
+    }
+
+    public ResponseEntity<?> getLastProductDiscounts(Double xHours) {
+        Date currentDate = new Date();
+        List<ProductDiscount> listPD = productDiscountRepository.loadLastProducts(currentDate, xHours);
+        Map<String, List<ProductDiscount>> listPDMap = new HashMap<>();
+
+        //setting a map of Store and Products with discounts before returning to the user
+        listPD.forEach(pd -> {
+                    listPDMap.computeIfAbsent(pd.getStore(), k -> new ArrayList<>()).add(pd);
+                });
+
+        //return a message if no discounts are available; and discounts otherwise
+        if (listPD.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "No discounts were found on the last " + xHours + " hours."));
+        } else {
+            return ResponseEntity.ok().body(listPDMap);
+        }
+
     }
 }
