@@ -1,0 +1,13 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P001,lapte zuzu,Zuzu,1,l,lactate,5/8/2025,5/14/2025,9
+P006,ouă mărimea M,Ferma Veche,10,buc,ouă,5/8/2025,5/14/2025,11
+P012,pâine albă,K-Classic,500,g,panificație,5/9/2025,5/15/2025,7
+P022,zahăr tos,Mărgăritar,1,kg,alimente de bază,5/10/2025,5/16/2025,6
+P029,ulei floarea-soarelui,Floriol,1,l,alimente de bază,5/8/2025,5/14/2025,8
+P032,biscuiți cu unt,Milka,0.2,kg,gustări,5/9/2025,5/15/2025,12
+P035,cafea măcinată,Jacobs,0.25,kg,cafea,5/10/2025,5/16/2025,11
+P044,hârtie igienică 3 straturi,Pufina,10,role,produse de menaj,5/8/2025,5/14/2025,13
+P047,piper negru măcinat,Fuchs,50,g,condimente,5/9/2025,5/15/2025,10
+P058,ceapă galbenă,Generic,1,kg,legume și fructe,5/10/2025,5/16/2025,5
+P061,suc portocale,Santorini,1,l,băuturi,5/8/2025,5/14/2025,9
+P063,cașcaval,K-Classic,0.25,kg,lactate,5/9/2025,5/15/2025,12

@@ -18,7 +18,10 @@ public class ProductDiscount {
     private String productCategory;
     private LocalDate fromDate;
     private LocalDate toDate;
+
+    //date stored from filename
     private LocalDate date;
+
     private Double percentageOfDiscount;
     private String store;
 }
