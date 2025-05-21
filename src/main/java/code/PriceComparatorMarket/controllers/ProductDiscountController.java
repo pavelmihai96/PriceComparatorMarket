@@ -21,8 +21,8 @@ public class ProductDiscountController {
         return productDiscountService.getHighestProductDiscounts(date);
     }
 
-    @GetMapping("/last/{xHours}")
-    public ResponseEntity<?> getLastProductDiscounts(@PathVariable Double xHours) {
-        return productDiscountService.getLastProductDiscounts(xHours);
+    @GetMapping("/last/{hours}")
+    public ResponseEntity<?> getLastProductDiscounts(@PathVariable Double hours) {
+        return productDiscountService.getLastProductDiscounts(hours);
     }
 }
