@@ -31,30 +31,16 @@ public class ProductCsvParser implements CsvParser<Product> {
                 try {
 
                     Product p = new Product();
-
-//                    if (file.toString().contains("discounts")) {
-//                        p.setProductId(line[0]);
-//                        p.setProductName(line[1]);
-//                        p.setBrand(line[2]);
-//                        p.setPackageQuantity(Double.parseDouble(line[3]));
-//                        p.setPackageUnit(line[4]);
-//                        p.setProductCategory(line[5]);
-//                        p.addToLocalDate(LocalDate.parse(LocalDate.parse(line[6], inputFormatter).format(outputFormatter)));
-//                        p.addToLocalDate(LocalDate.parse(LocalDate.parse(line[7], inputFormatter).format(outputFormatter)));
-//                        p.setStore(getStoreName(file));
-//                    } else {
-                        p.setProductId(line[0]);
-                        p.setProductName(line[1]);
-                        p.setProductCategory(line[2]);
-                        p.setBrand(line[3]);
-                        p.setPackageQuantity(Double.parseDouble(line[4]));
-                        p.setPackageUnit(line[5]);
-                        p.setPrice(Double.parseDouble(line[6]));
-                        p.setCurrency(line[7]);
-                        p.setDate(getDateFromFilename(file.getFileName().toString()));
-                        //p.addToLocalDate(getDateFromFilename(file.getFileName().toString()));
-                        p.setStore(getStoreName(file));
-//                    }
+                    p.setProductId(line[0]);
+                    p.setProductName(line[1]);
+                    p.setProductCategory(line[2]);
+                    p.setBrand(line[3]);
+                    p.setPackageQuantity(Double.parseDouble(line[4]));
+                    p.setPackageUnit(line[5]);
+                    p.setPrice(Double.parseDouble(line[6]));
+                    p.setCurrency(line[7]);
+                    p.setDate(getDateFromFilename(file.getFileName().toString()));
+                    p.setStore(getStoreName(file));
 
                     products.add(p);
                 } catch (NumberFormatException ex) {

@@ -1,6 +1,7 @@
 package code.PriceComparatorMarket.repositories;
 
 import code.PriceComparatorMarket.models.Product;
+import code.PriceComparatorMarket.models.ProductDiscount;
 import code.PriceComparatorMarket.parsers.CsvParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +42,22 @@ public class ProductRepository implements CsvRepository<Product> {
     }
 
     @Override
-    public List<Product> loadLastProducts(Date date, Double xHours) {
+    public List<Product> loadLastProducts(Date date, Double hours) {
         return null;
+    }
+
+    @Override
+    public List<Product> loadProductsByDate(LocalDate date) {
+        List<Product> allProducts = new ArrayList<>();
+
+        try (Stream<Path> paths = Files.walk(folder)) {
+            paths.filter(Files::isRegularFile)
+                    .filter(p -> p.toString().contains(date.toString()))
+                    .filter(p -> p.toString().endsWith(".csv"))
+                    .forEach(p -> allProducts.addAll(parser.parse(p)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return allProducts;
     }
 }
