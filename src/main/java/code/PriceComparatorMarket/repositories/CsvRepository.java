@@ -13,4 +13,5 @@ public interface CsvRepository<T> {
     List<T> loadLastProducts(Date date, Double hours);
 
     List<T> loadProductsByDate(LocalDate date);
+
 }

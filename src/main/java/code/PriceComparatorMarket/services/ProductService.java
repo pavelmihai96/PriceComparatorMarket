@@ -3,6 +3,7 @@ package code.PriceComparatorMarket.services;
 import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.models.ProductDiscount;
 import code.PriceComparatorMarket.repositories.CsvRepository;
+import code.PriceComparatorMarket.requests.ProductRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.opencsv.CSVReader;
@@ -44,15 +45,12 @@ public class ProductService {
     }
 
     public Optional<Product> findBestOffer(String productId, LocalDate date) {
-        //parcurge toate produsele din csv-urile de forma store_date.csv
         Optional<Product> productWithBestPrice =  productRepository.loadAllProducts().stream()
-                //.peek(p -> System.out.println("Inainte sa se filtreze dupa ID: " + p.getProductId()))
                 .filter(p -> p.getProductId().equalsIgnoreCase(productId))
-                //.peek(p -> System.out.println("Dupa ce s-a filtrat in functie de ID: " + p.getProductId() + ", " + p.getStore()))
 
-                // added this because it was possible to show a product from 1st when requesting on 8th, and it wasn't the case
+                /// added this because it was possible to show a product from 1st when requesting on 8th, and it wasn't the case
                 .filter(p -> !p.getDate().isAfter(date) && !p.getDate().isBefore(date.minusDays(6)))
-                .peek(p -> System.out.println("##Dupa ce s-a filtrat in functie de date: " + p.getProductId() + ", " + p.getStore() + ", " + p.getDate() + ", " + p.getPrice() + "\n------"))
+                //.peek(p -> System.out.println("DEBUG---###After filter: " + p.getProductId() + ", " + p.getStore() + ", " + p.getDate() + ", " + p.getPrice() + "\n------"))
                 .peek(p -> productDiscountService.applyDiscount(p, date))
 
                 //calculare minima in functie de data????
@@ -60,19 +58,34 @@ public class ProductService {
 
         return productWithBestPrice;
     }
-/*
-    public void addItemsToBasket() {
-        try (CSVReader reader = new CSVReader(new FileReader("src/main/java/code/PriceComparatorMarket/data/Basket.csv"))) {
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                if (nextLine[2].equals("TRUE")) {
-                    this.basket.add(nextLine[0]);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+    public Optional<Product> findBestValuePerUnit(ProductRequest request) {
+        Optional<Product> productWithBestValuePerUnit =  productRepository.loadAllProducts().stream()
+                .filter(p -> p.getProductName().equalsIgnoreCase(request.getProductName())
+                            &&  p.getProductCategory().equalsIgnoreCase(request.getProductCategory())
+                            &&  p.getBrand().equalsIgnoreCase(request.getBrand()))
+                .peek(p -> System.out.println("After request filter: " + p.getProductId() + ", " + p.getProductName() + ", " + p.getPackageQuantity() + ", " + p.getPackageUnit() + ", " + p.getStore() + ", " + p.getDate()))
+                .filter(p -> !p.getDate().isAfter(request.getDate()) && !p.getDate().isBefore(request.getDate().minusDays(6)))
+                .peek(p -> {
+                    productDiscountService.applyDiscount(p, request.getDate());
+                    p.setValuePerUnit(calculateValuePerUnit(p.getPrice(), p.getPackageQuantity(), p.getPackageUnit()));
+                })
+                .min(Comparator.comparing(product -> Double.parseDouble(product.getValuePerUnit().split("\\sRON")[0])));
+
+        return productWithBestValuePerUnit;
     }
 
- */
+    public String calculateValuePerUnit(Double price, Double quantity, String unit) {
+        if (Objects.equals(unit, "g")) {
+            quantity /= 1000;
+            unit = "kg";
+        }
+        if (Objects.equals(unit, "ml")) {
+            quantity /= 1000;
+            unit = "l";
+        }
+
+        Double valuePerUnit = price / quantity;
+        return valuePerUnit + " RON/" + unit;
+    }
 }

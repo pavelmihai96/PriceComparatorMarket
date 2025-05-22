@@ -18,7 +18,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/filter")
 public class DataPointsController {
+
     private final DataPointsService dataPointsService;
+
+    @PostMapping("/by-productId/{productId}")
+    public ResponseEntity<?> filterByProductId(@RequestBody DataPointsRequest request, @PathVariable String productId) {
+        return dataPointsService.filterByProductId(request, productId);
+    }
 
     @PostMapping("/by-category/{category}")
     public ResponseEntity<?> filterByCategory(@RequestBody DataPointsRequest request, @PathVariable String category) {
