@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 
 @Repository
 public class ProductRepository implements CsvRepository<Product> {
+
     private final CsvParser<Product> parser;
     private final Path folder;
 
@@ -33,8 +34,6 @@ public class ProductRepository implements CsvRepository<Product> {
                     .filter(p -> !p.toString().contains("discounts"))
                     .filter(p -> p.toString().endsWith(".csv"))
                     .forEach(p -> allProducts.addAll(parser.parse(p)));
-
-            //results.forEach(p -> p.addToLocalDate());
         } catch (IOException e) {
             e.printStackTrace();
         }

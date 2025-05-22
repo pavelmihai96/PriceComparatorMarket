@@ -32,9 +32,10 @@ public class ProductDiscountRepository implements CsvRepository<ProductDiscount>
         List<ProductDiscount> allProducts = new ArrayList<>();
 
         try (Stream<Path> paths = Files.walk(folder)) {
-            paths.peek(p -> System.out.println("P-ul inainte: " + p.toString()))
+            paths
+                    /// .peek(p -> System.out.println("DEBUG -> P-ul before: " + p.toString()))
                     .filter(Files::isRegularFile)
-                    .peek(p -> System.out.println("P-ul dupa: " + p.toString()))
+                    /// .peek(p -> System.out.println("DEBUG -> P-ul after: " + p.toString()))
                     .filter(p -> p.toString().contains("discounts"))
                     .filter(p -> p.toString().endsWith(".csv"))
                     .forEach(p -> allProducts.addAll(parser.parse(p)));
@@ -54,9 +55,9 @@ public class ProductDiscountRepository implements CsvRepository<ProductDiscount>
                     .filter(p -> p.toString().contains("discounts"))
                     .filter(p -> {
                         try {
-                            //hours reprezinta orele care se trimit din frontend
-                            //de exemplu se poate trimite valoarea 24,deci diferenta intre data la care se face interogarea si data la care fisierul a fost adaugat in folder
-                            //trebuie sa fie mai mica sau egala cu numarul orelor * 60(minute)
+                            /// hours represents the hours sent from frontend
+                            /// for instance, value 24 can be sent from frontend, so the difference between the date on which the request is made
+                            /// and the date on which the file was added to the folder must be <= hours * 60
                             return ((double) (date.getTime() - Files.readAttributes(p, BasicFileAttributes.class).creationTime().toMillis()) / (1000 * 60) <= (hours * 60));
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -74,4 +75,5 @@ public class ProductDiscountRepository implements CsvRepository<ProductDiscount>
     public List<ProductDiscount> loadProductsByDate(LocalDate date) {
         return null;
     }
+
 }

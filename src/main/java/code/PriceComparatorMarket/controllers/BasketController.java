@@ -2,6 +2,7 @@ package code.PriceComparatorMarket.controllers;
 
 import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.requests.BasketRequest;
+import code.PriceComparatorMarket.requests.ProductRequest;
 import code.PriceComparatorMarket.services.BasketService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,12 @@ public class BasketController {
 
     //call to this endpoint will optimize the basket and return the lists with store info and best prices
     @PostMapping("/cost-efficient")
-    public Map<String, List<Product>> costEfficient(@RequestBody BasketRequest request) {
+    public ResponseEntity<?> costEfficient(@RequestBody BasketRequest request) {
         return basketService.costEfficient(request.getProductIds(), request.getDate());
     }
 
     @PostMapping("/best-buy")
-    public Map<String, List<Product>> bestBuy(@RequestBody BasketRequest request) {
-        return basketService.bestBuy(request.getProductIds(), request.getDate());
+    public ResponseEntity<?> bestBuy(@RequestBody List<ProductRequest> request) {
+        return basketService.bestBuy(request);
     }
 }

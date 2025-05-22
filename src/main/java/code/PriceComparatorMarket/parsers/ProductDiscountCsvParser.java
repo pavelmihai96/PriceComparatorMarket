@@ -1,5 +1,6 @@
 package code.PriceComparatorMarket.parsers;
 
+import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.models.ProductDiscount;
 import com.opencsv.CSVReader;
 import org.springframework.cglib.core.Local;
@@ -17,10 +18,6 @@ public class ProductDiscountCsvParser implements CsvParser<ProductDiscount> {
 
     @Override
     public List<ProductDiscount> parse(Path file) {
-        //used to format de date coming from excel into LocalDate format
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
         List<ProductDiscount> discounts = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(file.toFile()))) {
             String[] line;
@@ -31,22 +28,7 @@ public class ProductDiscountCsvParser implements CsvParser<ProductDiscount> {
                     continue; // Skip invalid lines
                 }
                 try {
-                    ProductDiscount d = new ProductDiscount();
-
-                    d.setProductId(line[0]);
-                    d.setProductName(line[1]);
-                    d.setBrand(line[2]);
-                    d.setPackageQuantity(Double.parseDouble(line[3]));
-                    d.setPackageUnit(line[4]);
-                    d.setProductCategory(line[5]);
-
-                    d.setFromDate(LocalDate.parse(LocalDate.parse(line[6], inputFormatter).format(outputFormatter)));
-                    d.setToDate(LocalDate.parse(LocalDate.parse(line[7], inputFormatter).format(outputFormatter)));
-                    d.setPercentageOfDiscount(Double.parseDouble(line[8]));
-                    d.setStore(getStoreName(file));
-                    d.setDate(getDateFromFilename(file.getFileName().toString()));
-
-                    discounts.add(d);
+                    discounts.add(createProductFromLine(line, file));
                 } catch (NumberFormatException ex) {
                     System.err.println("From product discount: " + String.join(",", line));
                 }
@@ -55,6 +37,28 @@ public class ProductDiscountCsvParser implements CsvParser<ProductDiscount> {
             e.printStackTrace();
         }
         return discounts;
+    }
+
+    /// Method to create a new Product object and store data from csv in it
+    public ProductDiscount createProductFromLine(String[] line, Path file) {
+        /// Used to format de date coming from excel into LocalDate format
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        ProductDiscount pd = new ProductDiscount();
+
+        pd.setProductId(line[0]);
+        pd.setProductName(line[1]);
+        pd.setBrand(line[2]);
+        pd.setPackageQuantity(Double.parseDouble(line[3]));
+        pd.setPackageUnit(line[4]);
+        pd.setProductCategory(line[5]);
+        pd.setFromDate(LocalDate.parse(LocalDate.parse(line[6], inputFormatter).format(outputFormatter)));
+        pd.setToDate(LocalDate.parse(LocalDate.parse(line[7], inputFormatter).format(outputFormatter)));
+        pd.setPercentageOfDiscount(Double.parseDouble(line[8]));
+        pd.setStore(getStoreName(file));
+        pd.setDate(getDateFromFilename(file.getFileName().toString()));
+        return pd;
     }
 
     private String getStoreName(Path file) {

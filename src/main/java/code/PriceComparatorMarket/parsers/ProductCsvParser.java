@@ -1,9 +1,11 @@
 package code.PriceComparatorMarket.parsers;
 
 import code.PriceComparatorMarket.models.Product;
+import code.PriceComparatorMarket.models.ProductDiscount;
 import com.opencsv.CSVReader;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.FileReader;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -16,8 +18,6 @@ public class ProductCsvParser implements CsvParser<Product> {
 
     @Override
     public List<Product> parse(Path file) {
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         List<Product> products = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(file.toFile()))) {
@@ -26,23 +26,10 @@ public class ProductCsvParser implements CsvParser<Product> {
             while ((line = reader.readNext()) != null) {
                 if (line.length < 8) {
                     System.err.println("Invalid line in CSV file: " + String.join(",", line));
-                    continue; // Skip invalid lines
+                    continue; /// Skip invalid lines
                 }
                 try {
-
-                    Product p = new Product();
-                    p.setProductId(line[0]);
-                    p.setProductName(line[1]);
-                    p.setProductCategory(line[2]);
-                    p.setBrand(line[3]);
-                    p.setPackageQuantity(Double.parseDouble(line[4]));
-                    p.setPackageUnit(line[5]);
-                    p.setPrice(Double.parseDouble(line[6]));
-                    p.setCurrency(line[7]);
-                    p.setDate(getDateFromFilename(file.getFileName().toString()));
-                    p.setStore(getStoreName(file));
-
-                    products.add(p);
+                    products.add(createProductFromLine(line, file));
                 } catch (NumberFormatException ex) {
                     System.err.println("From product: " + String.join(",", line));
                 }
@@ -52,6 +39,22 @@ public class ProductCsvParser implements CsvParser<Product> {
             e.printStackTrace();
         }
         return products;
+    }
+
+    /// Method to create a new Product object and store data from csv in it
+    public Product createProductFromLine(String[] line, Path file) {
+        Product p = new Product();
+        p.setProductId(line[0]);
+        p.setProductName(line[1]);
+        p.setProductCategory(line[2]);
+        p.setBrand(line[3]);
+        p.setPackageQuantity(Double.parseDouble(line[4]));
+        p.setPackageUnit(line[5]);
+        p.setPrice(Double.parseDouble(line[6]));
+        p.setCurrency(line[7]);
+        p.setDate(getDateFromFilename(file.getFileName().toString()));
+        p.setStore(getStoreName(file));
+        return p;
     }
 
     private String getStoreName(Path file) {
