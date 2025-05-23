@@ -3,20 +3,20 @@ package code.PriceComparatorMarket.services;
 import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.models.ProductDiscount;
 import code.PriceComparatorMarket.repositories.CsvRepository;
+import code.PriceComparatorMarket.requests.PriceAlertRequest;
 import code.PriceComparatorMarket.requests.ProductRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.opencsv.CSVReader;
 import java.io.FileReader;
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.*;
 
 @AllArgsConstructor
 @Service
 public class ProductService {
     private final CsvRepository<Product> productRepository;
-    private final CsvRepository<ProductDiscount> productDiscountRepository;
     private final ProductDiscountService productDiscountService;
 
     public Product getProduct(String productId) {
@@ -45,22 +45,18 @@ public class ProductService {
     }
 
     public Optional<Product> findBestOffer(String productId, LocalDate date) {
-        Optional<Product> productWithBestPrice =  productRepository.loadAllProducts().stream()
+        return productRepository.loadAllProducts().stream()
                 .filter(p -> p.getProductId().equalsIgnoreCase(productId))
 
                 /// added this because it was possible to show a product from 1st when requesting on 8th, and it wasn't the case
                 .filter(p -> !p.getDate().isAfter(date) && !p.getDate().isBefore(date.minusDays(6)))
-                //.peek(p -> System.out.println("DEBUG---###After filter: " + p.getProductId() + ", " + p.getStore() + ", " + p.getDate() + ", " + p.getPrice() + "\n------"))
+                /// .peek(p -> System.out.println("DEBUG---###After filter: " + p.getProductId() + ", " + p.getStore() + ", " + p.getDate() + ", " + p.getPrice() + "\n------"))
                 .peek(p -> productDiscountService.applyDiscount(p, date))
-
-                //calculare minima in functie de data????
                 .min(Comparator.comparing(Product::getPrice));
-
-        return productWithBestPrice;
     }
 
     public Optional<Product> findBestValuePerUnit(ProductRequest request) {
-        Optional<Product> productWithBestValuePerUnit =  productRepository.loadAllProducts().stream()
+        return productRepository.loadAllProducts().stream()
                 .filter(p -> p.getProductName().equalsIgnoreCase(request.getProductName())
                             &&  p.getProductCategory().equalsIgnoreCase(request.getProductCategory())
                             &&  p.getBrand().equalsIgnoreCase(request.getBrand()))
@@ -71,8 +67,17 @@ public class ProductService {
                     p.setValuePerUnit(calculateValuePerUnit(p.getPrice(), p.getPackageQuantity(), p.getPackageUnit()));
                 })
                 .min(Comparator.comparing(product -> Double.parseDouble(product.getValuePerUnit().split("\\sRON")[0])));
+    }
 
-        return productWithBestValuePerUnit;
+    public Optional<Product> checkPriceAlert(PriceAlertRequest request, LocalDate date) {
+        return productRepository.loadAllProducts().stream()
+                .filter(p -> p.getProductId().equalsIgnoreCase(request.getProductId()))
+                .filter(p -> !p.getDate().isAfter(date) && !p.getDate().isBefore(date.minusDays(6)))
+                .peek(p -> {
+                    productDiscountService.applyDiscount(p, date);
+                })
+                .filter(p -> p.getPrice() <= request.getPriceAlert())
+                .min(Comparator.comparing(Product::getPrice));
     }
 
     public String calculateValuePerUnit(Double price, Double quantity, String unit) {

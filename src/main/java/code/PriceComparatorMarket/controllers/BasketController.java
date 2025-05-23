@@ -2,6 +2,7 @@ package code.PriceComparatorMarket.controllers;
 
 import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.requests.BasketRequest;
+import code.PriceComparatorMarket.requests.PriceAlertRequest;
 import code.PriceComparatorMarket.requests.ProductRequest;
 import code.PriceComparatorMarket.services.BasketService;
 import lombok.AllArgsConstructor;
@@ -29,5 +30,10 @@ public class BasketController {
     @PostMapping("/best-buy")
     public ResponseEntity<?> bestBuy(@RequestBody List<ProductRequest> request) {
         return basketService.bestBuy(request);
+    }
+
+    @PostMapping("/price-alert")
+    public ResponseEntity<?> priceAlert(@RequestBody List<PriceAlertRequest> request) {
+        return basketService.priceAlert(request);
     }
 }

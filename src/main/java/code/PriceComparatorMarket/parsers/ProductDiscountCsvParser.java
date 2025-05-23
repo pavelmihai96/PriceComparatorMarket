@@ -1,9 +1,8 @@
 package code.PriceComparatorMarket.parsers;
 
-import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.models.ProductDiscount;
+import code.PriceComparatorMarket.requests.PriceAlertRequest;
 import com.opencsv.CSVReader;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 import java.time.format.DateTimeFormatter;
 
@@ -17,14 +16,14 @@ import java.time.LocalDate;
 public class ProductDiscountCsvParser implements CsvParser<ProductDiscount> {
 
     @Override
-    public List<ProductDiscount> parse(Path file) {
+    public List<ProductDiscount> read(Path file) {
         List<ProductDiscount> discounts = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(file.toFile()))) {
             String[] line;
             reader.readNext();
             while ((line = reader.readNext()) != null) {
                 if (line.length < 9) {
-                    System.err.println("Invalid line in CSV file: " + String.join(",", line));
+                    System.err.println("ProductDiscountCsvParser: Invalid line in CSV file: " + String.join(",", line));
                     continue; // Skip invalid lines
                 }
                 try {
@@ -69,4 +68,8 @@ public class ProductDiscountCsvParser implements CsvParser<ProductDiscount> {
         String date = file.replaceAll(".*_(\\d{4}-\\d{2}-\\d{2})\\.csv", "$1");
         return LocalDate.parse(date);
     }
+
+    ///  not used
+    @Override
+    public void write(Path file, List<PriceAlertRequest> request) {}
 }

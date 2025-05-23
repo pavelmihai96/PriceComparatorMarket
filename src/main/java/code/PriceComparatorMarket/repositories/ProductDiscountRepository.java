@@ -1,8 +1,8 @@
 package code.PriceComparatorMarket.repositories;
 
-import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.models.ProductDiscount;
 import code.PriceComparatorMarket.parsers.CsvParser;
+import code.PriceComparatorMarket.requests.PriceAlertRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -14,16 +14,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository
 public class ProductDiscountRepository implements CsvRepository<ProductDiscount> {
-    private final CsvParser<ProductDiscount> parser;
+    private final CsvParser<ProductDiscount> reader;
     private final Path folder;
 
-    public ProductDiscountRepository(CsvParser<ProductDiscount> parser, @Value("${csv.folder.path}") String folderPath) {
-        this.parser = parser;
+    public ProductDiscountRepository(CsvParser<ProductDiscount> reader, @Value("${csv.folder.path}") String folderPath) {
+        this.reader = reader;
         this.folder = Path.of(folderPath);
     }
 
@@ -32,13 +31,10 @@ public class ProductDiscountRepository implements CsvRepository<ProductDiscount>
         List<ProductDiscount> allProducts = new ArrayList<>();
 
         try (Stream<Path> paths = Files.walk(folder)) {
-            paths
-                    /// .peek(p -> System.out.println("DEBUG -> P-ul before: " + p.toString()))
-                    .filter(Files::isRegularFile)
-                    /// .peek(p -> System.out.println("DEBUG -> P-ul after: " + p.toString()))
+            paths.filter(Files::isRegularFile)
                     .filter(p -> p.toString().contains("discounts"))
                     .filter(p -> p.toString().endsWith(".csv"))
-                    .forEach(p -> allProducts.addAll(parser.parse(p)));
+                    .forEach(p -> allProducts.addAll(reader.read(p)));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +59,7 @@ public class ProductDiscountRepository implements CsvRepository<ProductDiscount>
                             throw new RuntimeException(e);
                         }
                     })
-                    .forEach(p -> allProducts.addAll(parser.parse(p)));
+                    .forEach(p -> allProducts.addAll(reader.read(p)));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,9 +67,13 @@ public class ProductDiscountRepository implements CsvRepository<ProductDiscount>
         return allProducts;
     }
 
+    /// not used
     @Override
     public List<ProductDiscount> loadProductsByDate(LocalDate date) {
         return null;
     }
 
+    /// not used
+    @Override
+    public void updatePriceAlertCsv(List<PriceAlertRequest> request) {}
 }

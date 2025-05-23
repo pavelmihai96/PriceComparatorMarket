@@ -1,5 +1,6 @@
 package code.PriceComparatorMarket.repositories;
 
+import code.PriceComparatorMarket.requests.PriceAlertRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +14,7 @@ public interface CsvRepository<T> {
     List<T> loadLastProducts(Date date, Double hours);
 
     List<T> loadProductsByDate(LocalDate date);
+
+    void updatePriceAlertCsv(List<PriceAlertRequest> request);
 
 }
