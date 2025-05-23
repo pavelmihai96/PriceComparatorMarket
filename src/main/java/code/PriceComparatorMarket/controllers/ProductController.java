@@ -1,9 +1,11 @@
 package code.PriceComparatorMarket.controllers;
 
 import code.PriceComparatorMarket.models.Product;
+import code.PriceComparatorMarket.requests.PriceAlertRequest;
 import code.PriceComparatorMarket.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,5 +21,4 @@ public class ProductController {
     public Product getProduct(@PathVariable String productId) {
         return productService.getProduct(productId);
     }
-
 }

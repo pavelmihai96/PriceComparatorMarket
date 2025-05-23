@@ -1,8 +1,8 @@
 package code.PriceComparatorMarket.repositories;
 
 import code.PriceComparatorMarket.models.Product;
-import code.PriceComparatorMarket.models.ProductDiscount;
 import code.PriceComparatorMarket.parsers.CsvParser;
+import code.PriceComparatorMarket.requests.PriceAlertRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -18,11 +18,13 @@ import java.util.stream.Stream;
 @Repository
 public class ProductRepository implements CsvRepository<Product> {
 
-    private final CsvParser<Product> parser;
+    private final CsvParser<Product> reader;
+    private final CsvParser<Product> writer;
     private final Path folder;
 
-    public ProductRepository(CsvParser<Product> parser, @Value("${csv.folder.path}") String folderPath) {
-        this.parser = parser;
+    public ProductRepository(CsvParser<Product> reader, CsvParser<Product> writer, @Value("${csv.folder.path}") String folderPath) {
+        this.reader = reader;
+        this.writer = writer;
         this.folder = Path.of(folderPath);
     }
 
@@ -31,18 +33,13 @@ public class ProductRepository implements CsvRepository<Product> {
         List<Product> allProducts = new ArrayList<>();
         try (Stream<Path> paths = Files.walk(folder)) {
             paths.filter(Files::isRegularFile)
-                    .filter(p -> !p.toString().contains("discounts"))
+                    .filter(p -> !p.toString().contains("discounts") && !p.toString().contains("price-alert"))
                     .filter(p -> p.toString().endsWith(".csv"))
-                    .forEach(p -> allProducts.addAll(parser.parse(p)));
+                    .forEach(p -> allProducts.addAll(reader.read(p)));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return allProducts;
-    }
-
-    @Override
-    public List<Product> loadLastProducts(Date date, Double hours) {
-        return null;
     }
 
     @Override
@@ -53,10 +50,28 @@ public class ProductRepository implements CsvRepository<Product> {
             paths.filter(Files::isRegularFile)
                     .filter(p -> p.toString().contains(date.toString()))
                     .filter(p -> p.toString().endsWith(".csv"))
-                    .forEach(p -> allProducts.addAll(parser.parse(p)));
+                    .forEach(p -> allProducts.addAll(reader.read(p)));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return allProducts;
+    }
+
+    @Override
+    public void updatePriceAlertCsv(List<PriceAlertRequest> request) {
+        try (Stream<Path> paths = Files.walk(folder)) {
+            paths.filter(Files::isRegularFile)
+                    .filter(p -> p.toString().contains("price-alert"))
+                    .filter(p -> p.toString().endsWith(".csv"))
+                    .forEach(p -> writer.write(p, request));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /// not used
+    @Override
+    public List<Product> loadLastProducts(Date date, Double hours) {
+        return null;
     }
 }

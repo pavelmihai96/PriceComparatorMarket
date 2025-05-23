@@ -24,11 +24,11 @@ public class Product {
     private Double price;
     private String currency;
 
+    /// additional members needed
     @JsonIgnore
     private LocalDate date;
     @JsonIgnore
     private String store;
-
     private String valuePerUnit;
 
 }

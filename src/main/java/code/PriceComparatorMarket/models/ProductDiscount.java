@@ -1,5 +1,7 @@
 package code.PriceComparatorMarket.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -9,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductDiscount {
     private String productId;
     private String productName;
@@ -18,10 +21,11 @@ public class ProductDiscount {
     private String productCategory;
     private LocalDate fromDate;
     private LocalDate toDate;
-
-    //date stored from filename
-    private LocalDate date;
-
     private Double percentageOfDiscount;
+
+    /// additional members needed
+    @JsonIgnore
+    private LocalDate date;
+    @JsonIgnore
     private String store;
 }
