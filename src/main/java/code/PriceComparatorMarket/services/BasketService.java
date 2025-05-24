@@ -3,6 +3,7 @@ package code.PriceComparatorMarket.services;
 import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.repositories.ProductRepository;
 import code.PriceComparatorMarket.requests.PriceAlertRequest;
+import code.PriceComparatorMarket.requests.ProductCustom;
 import code.PriceComparatorMarket.requests.ProductRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ import java.util.*;
 @AllArgsConstructor
 @Service
 public class BasketService {
-
     @Autowired
     private final ProductService productService;
 
@@ -36,6 +36,7 @@ public class BasketService {
             productService.findBestOffer(product, date).ifPresent(
             p -> {
                 /// add the pair { "store": Product }
+                //listsOfProducts.computeIfAbsent(p.getStore(), k -> new ArrayList<>()).add(new Product(p.getProductId(), p.getProductName(), p.getPackageQuantity(), p.getPackageUnit(), p.getPrice()));
                 listsOfProducts.computeIfAbsent(p.getStore(), k -> new ArrayList<>()).add(p);
             });
         }
@@ -55,11 +56,11 @@ public class BasketService {
     /// 2. then for each object findBestValuePerUnit is called, which verifies the best value per unit, if it exists
     /// 3. then that Product will be mapped
     /// 4. the method will return the Map or a message
-    public ResponseEntity<?> bestBuy(List<ProductRequest> request) {
+    public ResponseEntity<?> bestBuy(ProductRequest request) {
         Map<String, List<Product>> listsOfProducts = new HashMap<>();
 
-        for (ProductRequest product : request) {
-            productService.findBestValuePerUnit(product).ifPresent(
+        for (ProductCustom product : request.getProducts()) {
+            productService.findBestValuePerUnit(product, request.getDate()).ifPresent(
                     p -> {
                         /// add the pair { "store": Product }
                         listsOfProducts.computeIfAbsent(p.getStore(), k -> new ArrayList<>()).add(p);
@@ -91,7 +92,7 @@ public class BasketService {
             productService.checkPriceAlert(pr, currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()).ifPresent(
                     p -> {
                         /// add the pair { "store": Product }
-                        listsOfProducts.computeIfAbsent(p.getStore(), k -> new ArrayList<>()).add(p);
+                        listsOfProducts.computeIfAbsent(p.getStore(), k -> new ArrayList<>()).add(new Product(p.getProductId(), p.getProductName(), p.getPackageQuantity(), p.getPackageUnit(), p.getPrice()));
                     });
 
             /// add the pair { "productId" : message }
@@ -99,7 +100,7 @@ public class BasketService {
                 listsOfProducts.computeIfAbsent(pr.getProductId(), k -> new ArrayList<>()).add("Price didn't reach the set alert.");
             }
         }
-
+        System.out.println(ResponseEntity.ok().body(listsOfProducts));
         return ResponseEntity.ok().body(listsOfProducts);
     }
 }

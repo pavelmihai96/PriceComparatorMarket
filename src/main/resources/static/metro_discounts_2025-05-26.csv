@@ -1,0 +1,21 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P026,lapte UHT 1.5%,Zuzu,1,l,lactate,5/24/2025,6/1/2025,4
+P027,ouă M,Ferma Veche,10,buc,ouă,5/25/2025,6/2/2025,7
+P028,pâine intermediară,Băneasa,500,g,panificație,5/26/2025,6/3/2025,5
+P030,piept de curcan,Aldis,1,kg,carne,5/24/2025,5/31/2025,10
+P031,paste penne,Barilla,500,g,paste făinoase,5/25/2025,6/2/2025,6
+P033,apă minerală,Borsec,2,l,băuturi,5/26/2025,6/3/2025,8
+P034,cafea instant,Nescafé,200,g,cafea,5/24/2025,6/1/2025,9
+P035,ciocolată cu lapte,Milka,100,g,gustări,5/25/2025,6/2/2025,11
+P036,smântână 12%,LaDorna,200,g,lactate,5/26/2025,6/3/2025,6
+P037,unt President 82%,President,250,g,lactate,5/24/2025,6/1/2025,7
+P039,detergent capsule,Ariel,20,buc,produse de menaj,5/25/2025,6/2/2025,12
+P052,iaurt natural 3%,ARO,400,g,lactate,5/26/2025,6/3/2025,5
+P055,baghetă albă,Fine Life,400,g,panificație,5/24/2025,5/31/2025,4
+P057,carne tocată porc/carne vită,Metro Chef,1,kg,carne,5/25/2025,6/1/2025,10
+P060,apă minerală carbogazoasă,Metro Chef,2,l,băuturi,5/26/2025,6/3/2025,6
+P062,napolitane cu ciocolată,Fine Life,180,g,gustări,5/24/2025,6/1/2025,5
+P065,fulgi de ovăz,ARO,500,g,mic dejun,5/25/2025,6/2/2025,8
+P067,șampon antibacterian,Fine Life,1,l,îngrijire personală,5/26/2025,6/3/2025,15
+P072,săpun solid,Metro Chef,4,buc,îngrijire personală,5/24/2025,6/1/2025,13
+P077,apă plată,Fine Life,8,l,băuturi,5/25/2025,6/2/2025,5

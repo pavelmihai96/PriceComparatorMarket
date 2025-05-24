@@ -5,11 +5,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Builder
@@ -24,11 +22,19 @@ public class Product {
     private Double price;
     private String currency;
 
+    /// custom constructor
+    public Product (String productId, String productName, Double packageQuantity, String packageUnit, Double price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.packageQuantity = packageQuantity;
+        this.packageUnit = packageUnit;
+        this.price = price;
+    }
+
     /// additional members needed
-    @JsonIgnore
+    //@JsonIgnore
     private LocalDate date;
     @JsonIgnore
     private String store;
     private String valuePerUnit;
-
 }

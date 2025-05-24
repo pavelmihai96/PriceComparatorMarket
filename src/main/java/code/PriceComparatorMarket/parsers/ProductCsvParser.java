@@ -15,7 +15,7 @@ import java.util.List;
 
 @Component
 public class ProductCsvParser implements CsvParser<Product> {
-
+    /// read method reads the csv and maps it to a Product object
     @Override
     public List<Product> read(Path file) {
 
@@ -25,13 +25,13 @@ public class ProductCsvParser implements CsvParser<Product> {
             reader.readNext();
             while ((line = reader.readNext()) != null) {
                 if (line.length < 8) {
-                    System.err.println("ProductCsvParser: Invalid line in CSV file: " + String.join(",", line));
+                    System.err.println("ProductCsvParser-Invalid line in CSV file: " + String.join(",", line));
                     continue; /// Skip invalid lines
                 }
                 try {
                     products.add(createProductFromLine(line, file));
                 } catch (NumberFormatException ex) {
-                    System.err.println("From product: " + String.join(",", line));
+                    System.err.println("ProductCsvParser-From read: " + String.join(",", line));
                 }
 
             }
@@ -41,8 +41,33 @@ public class ProductCsvParser implements CsvParser<Product> {
         return products;
     }
 
+    /// readPriceAlert reads price-alert.csv and maps it to a list of PriceAlertRequest objects
+    public List<PriceAlertRequest> readPriceAlert(Path file) {
+
+        List<PriceAlertRequest> products = new ArrayList<>();
+        try (CSVReader reader = new CSVReader(new FileReader(file.toFile()))) {
+            String[] line;
+            reader.readNext();
+            while ((line = reader.readNext()) != null) {
+                try {
+                    PriceAlertRequest p = new PriceAlertRequest();
+                    p.setProductId(line[0]);
+                    p.setPriceAlert(Double.parseDouble(line[1]));
+                    products.add(p);
+                } catch (NumberFormatException ex) {
+                    System.err.println("ProductCsvParser-From readPriceAlert: " + String.join(",", line));
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    /// writePriceAlert method writes the data coming from frontend to price-alert.csv and overwrites it
     @Override
-    public void write(Path file, List<PriceAlertRequest> request) {
+    public void writePriceAlert(Path file, List<PriceAlertRequest> request) {
 
         try (CSVWriter writer = new CSVWriter(
                 new FileWriter(file.toFile()),

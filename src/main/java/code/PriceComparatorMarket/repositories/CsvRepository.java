@@ -1,8 +1,6 @@
 package code.PriceComparatorMarket.repositories;
 
 import code.PriceComparatorMarket.requests.PriceAlertRequest;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -16,5 +14,4 @@ public interface CsvRepository<T> {
     List<T> loadProductsByDate(LocalDate date);
 
     void updatePriceAlertCsv(List<PriceAlertRequest> request);
-
 }

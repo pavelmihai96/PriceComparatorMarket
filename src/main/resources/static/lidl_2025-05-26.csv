@@ -1,0 +1,52 @@
+﻿product_id,product_name,product_category,brand,package_quantity,package_unit,price,currency
+P001,lapte integral 3.5%,lactate,Pilos,1,l,6.49,RON
+P002,iaurt natur,lactate,Pilos,0.4,kg,3.99,RON
+P003,ouă Ogradă,ouă,Ogradă,10,buc,12.49,RON
+P004,brânză telemea vacă,lactate,Pilos,0.3,kg,9.99,RON
+P005,pâine albă feliată,panificație,Chef Select,500,g,4.29,RON
+P006,roșii cherry,legume și fructe,Solevita,250,g,7.49,RON
+P007,piept de pui dezosat,carne,Pikok,1,kg,25.99,RON
+P008,spaghetti,paste făinoase,Combino,500,g,3.79,RON
+P009,zahăr alb,alimente de bază,Castello,1,kg,4.29,RON
+P010,apă plată,băuturi,Saguaro,2,l,3.15,RON
+P011,cafea măcinată,cafea,Bellarom,0.25,kg,15.99,RON
+P012,ciocolată neagră 70%,gustări,Fin Carre,100,g,3.99,RON
+P013,smântână fermentată 20%,lactate,Pilos,200,g,3.49,RON
+P014,unt 82%,lactate,Pilos,500,g,14,RON
+P015,muesli cu fructe,mic dejun,Crownfield,500,g,8.99,RON
+P016,unt 82%,lactate,Pilos,250,g,8.59,RON
+P017,hârtie igienică 3 straturi,produse de menaj,Floralys,10,role,17.49,RON
+P018,detergent lichid,produse de menaj,Formil,2.5,l,29.99,RON
+P019,iaurt de băut căpșuni,lactate,Pilos,330,ml,2.99,RON
+P020,lapte integral 3.5%,lactate,Pilos,1.5,l,8,RON
+P021,granola cu nuci,mic dejun,Crownfield,300,g,9.49,RON
+P022,șampon păr uscat,îngrijire personală,Cien,400,ml,7.99,RON
+P023,săpun lichid antibacterian,îngrijire personală,Cien,500,ml,5.19,RON
+P024,crenvurști pui,carne,Pikok,300,g,6.99,RON
+P025,brânză topită feliată,lactate,Pilos,150,g,4.69,RON
+P026,lapte UHT 1.5%,lactate,Zuzu,1,l,6.1,RON
+P027,ouă M,ouă,Ferma Veche,10,buc,13.2,RON
+P028,pâine intermediară,panificație,Băneasa,500,g,4.2,RON
+P029,roșii prunișoare,legume și fructe,Generic,500,g,7.9,RON
+P030,piept de curcan,carne,Aldis,1,kg,28.9,RON
+P031,paste penne,paste făinoase,Barilla,500,g,5.99,RON
+P032,ouă M,ouă,Ferma Veche,6,buc,10,RON
+P033,apă minerală,băuturi,Borsec,2,l,3.4,RON
+P034,cafea instant,cafea,Nescafé,200,g,23.9,RON
+P035,ciocolată cu lapte,gustări,Milka,100,g,5.1,RON
+P036,smântână 12%,lactate,LaDorna,200,g,4.2,RON
+P037,unt President 82%,lactate,President,250,g,10.9,RON
+P038,hârtie igienică dublu strat,produse de menaj,Zewa,8,role,22.9,RON
+P039,detergent capsule,produse de menaj,Ariel,20,buc,33.9,RON
+P040,iaurt Activia căpșuni,lactate,Danone,120,g,2.8,RON
+P041,biscuiți Petit Beurre,gustări,Boromir,150,g,2.9,RON
+P042,granola cu ciocolată,mic dejun,Nestlé,350,g,9.9,RON
+P043,șampon reparator,îngrijire personală,Head & Shoulders,400,ml,16.99,RON
+P044,săpun lichid aloe,îngrijire personală,Dettol,250,ml,6.9,RON
+P045,crenvurști porc,carne,Caroli,300,g,7.9,RON
+P046,brânză topită triunghi,lactate,La Vache qui rit,140,g,6.99,RON
+P047,ton bucăți în ulei,alimente de bază,Calvo,160,g,7.2,RON
+P048,orez jasmine,alimente de bază,Scotti,1,kg,10.9,RON
+P049,suc de mere,băuturi,Prigat,1.5,l,6.1,RON
+P050,morcovi baby,legume și fructe,Generic,200,g,4.8,RON
+P044,săpun lichid aloe,îngrijire personală,Dettol,250,ml,8,RON

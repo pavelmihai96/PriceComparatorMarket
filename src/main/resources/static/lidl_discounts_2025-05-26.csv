@@ -1,0 +1,26 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P001,lapte integral 3.5%,Pilos,1,l,lactate,5/24/2025,6/2/2025,7
+P004,brânză telemea vacă,Pilos,0.3,kg,lactate,5/26/2025,5/31/2025,12
+P006,roșii cherry,Solevita,250,g,legume și fructe,5/27/2025,6/1/2025,18
+P007,piept de pui dezosat,Pikok,1,kg,carne,5/25/2025,6/2/2025,9
+P009,zahăr alb,Castello,1,kg,alimente de bază,5/24/2025,6/3/2025,14
+P010,apă plată,Saguaro,2,l,băuturi,5/26/2025,6/1/2025,10
+P011,cafea măcinată,Bellarom,0.25,kg,cafea,5/27/2025,6/2/2025,6
+P012,ciocolată neagră 70%,Fin Carre,100,g,gustări,5/24/2025,5/31/2025,11
+P013,smântână fermentată 20%,Pilos,200,g,lactate,5/25/2025,6/3/2025,4
+P015,muesli cu fructe,Crownfield,500,g,mic dejun,5/26/2025,6/2/2025,8
+P016,unt 82%,Pilos,250,g,lactate,5/24/2025,5/31/2025,20
+P017,hârtie igienică 3 straturi,Floralys,10,role,produse de menaj,5/25/2025,6/3/2025,13
+P018,detergent lichid,Formil,2.5,l,produse de menaj,5/24/2025,6/1/2025,17
+P020,lapte integral 3.5%,Pilos,1.5,l,lactate,5/27/2025,6/2/2025,5
+P021,granola cu nuci,Crownfield,300,g,mic dejun,5/25/2025,6/3/2025,19
+P023,săpun lichid antibacterian,Cien,500,ml,îngrijire personală,5/24/2025,6/1/2025,15
+P025,brânză topită feliată,Pilos,150,g,lactate,5/26/2025,6/2/2025,6
+P027,ouă M,Ferma Veche,10,buc,ouă,5/25/2025,6/1/2025,16
+P029,roșii prunișoare,Generic,500,g,legume și fructe,5/24/2025,6/3/2025,22
+P030,piept de curcan,Aldis,1,kg,carne,5/26/2025,6/2/2025,25
+P032,ouă M,Ferma Veche,6,buc,ouă,5/27/2025,6/1/2025,7
+P034,cafea instant,Nescafé,200,g,cafea,5/25/2025,6/2/2025,9
+P035,ciocolată cu lapte,Milka,100,g,gustări,5/24/2025,6/3/2025,5
+P037,unt President 82%,President,250,g,lactate,5/26/2025,6/1/2025,10
+P042,granola cu ciocolată,Nestlé,350,g,mic dejun,5/25/2025,6/3/2025,21

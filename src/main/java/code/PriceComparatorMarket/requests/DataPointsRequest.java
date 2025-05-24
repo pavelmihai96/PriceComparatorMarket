@@ -10,6 +10,10 @@ import java.time.LocalDate;
 @Setter
 @Builder
 public class DataPointsRequest {
+    private String productId;
+    private String category;
+    private String brand;
+    private String store;
     private LocalDate startDate;
     private LocalDate endDate;
 }

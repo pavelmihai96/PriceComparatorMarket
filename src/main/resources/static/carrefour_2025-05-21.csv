@@ -1,0 +1,50 @@
+﻿product_id,product_name,product_category,brand,package_quantity,package_unit,price,currency
+P051,lapte UHT 3.5%,lactate,Metro Chef,1,l,6.25,RON
+P052,iaurt natural 3%,lactate,ARO,400,g,3.45,RON
+P053,ouă M,ouă,Metro Chef,10,buc,12.2,RON
+P054,brânză feta,lactate,Metro Chef,300,g,10.99,RON
+P055,baghetă albă,panificație,Fine Life,400,g,3.79,RON
+P056,roșii rondele,legume și fructe,Generic,500,g,6.89,RON
+P057,carne tocată porc/carne vită,carne,Metro Chef,1,kg,23.5,RON
+P058,penne rigate,paste făinoase,ARO,500,g,3.05,RON
+P059,zahăr brun,alimente de bază,Fine Life,1,kg,5.15,RON
+P060,apă minerală carbogazoasă,băuturi,Metro Chef,2,l,3.25,RON
+P061,cafea boabe,cafea,Metro Chef,1,kg,39.9,RON
+P062,napolitane cu ciocolată,gustări,Fine Life,180,g,5.6,RON
+P063,smântână 20%,lactate,ARO,200,g,4.1,RON
+P064,unt 65%,lactate,Fine Life,250,g,7.3,RON
+P065,smântână 20%,lactate,ARO,1000,g,17.8,RON
+P066,hârtie igienică reciclată,produse de menaj,ARO,8,role,15.2,RON
+P067,detergent lichid color,produse de menaj,Fine Life,2,l,24.9,RON
+P068,iaurt cu fructe pădure,lactate,Fine Life,300,g,3.35,RON
+P069,iaurt grecesc,lactate,Carrefour,600,g,4.25,RON
+P070,cereale cu ciocolată,mic dejun,ARO,375,g,6.95,RON
+P086,lapte proaspăt 3.5%,lactate,Carrefour,1,l,6.79,RON
+P087,iaurt grecesc,lactate,Carrefour,400,g,4.25,RON
+P088,ouă bio,ouă,Carrefour Bio,6,buc,11.99,RON
+P089,telemea de vacă,lactate,Carrefour,300,g,9.45,RON
+P090,pâine integrală felii,panificație,Carrefour,500,g,5.1,RON
+P091,roșii cherry,legume și fructe,Carrefour,250,g,8.25,RON
+P092,piept pui file,carne,Carrefour,1,kg,27.99,RON
+P093,spaghetti nr.3,paste făinoase,Carrefour,500,g,3.89,RON
+P094,zahăr tos,alimente de bază,Carrefour,1,kg,4.39,RON
+P095,apă plată,băuturi,Carrefour,2,l,3.25,RON
+P096,cafea măcinată,cafea,Carrefour,250,g,16.45,RON
+P097,ciocolată amăruie 85%,gustări,Carrefour,100,g,4.49,RON
+P098,smântână 18%,lactate,Carrefour,200,g,3.89,RON
+P099,unt 80%,lactate,Carrefour,250,g,8.75,RON
+P100,cereale cu fructe,mic dejun,Carrefour,500,g,9.25,RON
+P101,hârtie igienică 4 straturi,produse de menaj,Carrefour,12,role,19.99,RON
+P102,detergent lichid lavandă,produse de menaj,Carrefour,3,l,31.9,RON
+P103,iaurt de băut mango,lactate,Carrefour,300,ml,3.2,RON
+P104,granola crunchy,mic dejun,Carrefour,350,g,8.99,RON
+P105,șampon păr normal,îngrijire personală,Carrefour,400,ml,8.49,RON
+P106,săpun lichid cremă,îngrijire personală,Carrefour,500,ml,6.75,RON
+P107,iaurt de băut mango,lactate,Carrefour,450,ml,4.5,RON
+P108,brânză topită triunghi,lactate,Carrefour,140,g,5.95,RON
+P109,ton bucăți în apă,alimente de bază,Carrefour,160,g,6.9,RON
+P110,orez basmati,alimente de bază,Carrefour,1,kg,7.9,RON
+P111,suc portocale,băuturi,Carrefour,1.5,l,5.65,RON
+P112,cartofi albi,legume și fructe,Carrefour,1,kg,2.99,RON
+P113,bere blondă sticlă,băuturi,Carrefour,0.5,l,3.75,RON
+P114,sare iodată,alimente de bază,Carrefour,1,kg,1.75,RON

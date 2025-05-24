@@ -1,0 +1,16 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P052,iaurt natural 3%,ARO,400,g,lactate,5/19/2025,5/29/2025,18
+P110,orez basmati,Carrefour,1,kg,alimente de bază,5/22/2025,5/28/2025,22
+P068,iaurt cu fructe pădure,Fine Life,300,g,lactate,5/20/2025,5/30/2025,11
+P066,hârtie igienică reciclată,ARO,8,role,produse de menaj,5/21/2025,5/29/2025,10
+P055,baghetă albă,Fine Life,400,g,panificație,5/20/2025,5/27/2025,15
+P089,telemea de vacă,Carrefour,300,g,lactate,5/21/2025,5/29/2025,7
+P059,zahăr brun,Fine Life,1,kg,alimente de bază,5/22/2025,5/28/2025,19
+P053,ouă M,Metro Chef,10,buc,ouă,5/19/2025,5/30/2025,6
+P111,suc portocale,Carrefour,1.5,l,băuturi,5/19/2025,5/27/2025,25
+P061,cafea boabe,Metro Chef,1,kg,cafea,5/22/2025,5/29/2025,9
+P064,unt 65%,Fine Life,250,g,lactate,5/20/2025,5/28/2025,20
+P092,piept pui file,Carrefour,1,kg,carne,5/19/2025,5/27/2025,14
+P057,carne tocată porc/carne vită,Metro Chef,1,kg,carne,5/20/2025,5/29/2025,16
+P062,napolitane cu ciocolată,Fine Life,180,g,gustări,5/22/2025,5/30/2025,5
+P090,pâine integrală felii,Carrefour,500,g,panificație,5/21/2025,5/27/2025,12

@@ -10,5 +10,5 @@ import java.util.List;
 public interface CsvParser<T> {
     List<T> read(Path file);
 
-    void write(Path file, List<PriceAlertRequest> request);
+    void writePriceAlert(Path file, List<PriceAlertRequest> request);
 }

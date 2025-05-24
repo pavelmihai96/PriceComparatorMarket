@@ -1,0 +1,37 @@
+﻿product_id,product_name,product_category,brand,package_quantity,package_unit,price,currency
+P004,brânză telemea vacă,lactate,Pilos,0.3,kg,10.1,RON
+P010,apă plată,băuturi,Saguaro,2,l,3.45,RON
+P016,unt 82%,lactate,Pilos,250,g,9.1,RON
+P007,piept de pui dezosat,carne,Pikok,1,kg,27.2,RON
+P014,unt 82%,lactate,Pilos,500,g,14.7,RON
+P008,spaghetti,paste făinoase,Combino,500,g,4.05,RON
+P003,ouă Ogradă,ouă,Ogradă,10,buc,13.29,RON
+P023,săpun lichid antibacterian,îngrijire personală,Cien,500,ml,5.55,RON
+P036,smântână 12%,lactate,LaDorna,200,g,4.25,RON
+P022,șampon păr uscat,îngrijire personală,Cien,400,ml,8.5,RON
+P021,granola cu nuci,mic dejun,Crownfield,300,g,9.75,RON
+P017,hârtie igienică 3 straturi,produse de menaj,Floralys,10,role,17.9,RON
+P002,iaurt natur,lactate,Pilos,0.4,kg,4.05,RON
+P024,crenvurști pui,carne,Pikok,300,g,7.4,RON
+P032,ouă M,ouă,Ferma Veche,6,buc,10.6,RON
+P033,apă minerală,băuturi,Borsec,2,l,3.65,RON
+P005,pâine albă feliată,panificație,Chef Select,500,g,4.55,RON
+P026,lapte UHT 1.5%,lactate,Zuzu,1,l,6.55,RON
+P030,piept de curcan,carne,Aldis,1,kg,30,RON
+P001,lapte integral 3.5%,lactate,Pilos,1,l,6.99,RON
+P035,ciocolată cu lapte,gustări,Milka,100,g,5.49,RON
+P006,roșii cherry,legume și fructe,Solevita,250,g,7.89,RON
+P031,paste penne,paste făinoase,Barilla,500,g,6.3,RON
+P011,cafea măcinată,cafea,Bellarom,0.25,kg,16.49,RON
+P142,cafea măcinată,cafea,Bellarom,0.75,kg,20,RON
+P012,ciocolată neagră 70%,gustări,Fin Carre,100,g,4.25,RON
+P013,smântână fermentată 20%,lactate,Pilos,200,g,3.7,RON
+P141,smântână fermentată 20%,lactate,Pilos,500,g,5,RON
+P015,muesli cu fructe,mic dejun,Crownfield,500,g,9.5,RON
+P034,cafea instant,cafea,Nescafé,200,g,24.1,RON
+P027,ouă M,ouă,Ferma Veche,10,buc,13.9,RON
+P025,brânză topită feliată,lactate,Pilos,150,g,5,RON
+P038,hârtie igienică dublu strat,produse de menaj,Zewa,8,role,24,RON
+P037,unt President 82%,lactate,President,250,g,11.5,RON
+P018,detergent lichid,produse de menaj,Formil,2.5,l,31,RON
+P020,lapte integral 3.5%,lactate,Pilos,1.5,l,8.45,RON

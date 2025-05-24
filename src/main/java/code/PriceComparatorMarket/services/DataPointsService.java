@@ -1,7 +1,6 @@
 package code.PriceComparatorMarket.services;
 
 import code.PriceComparatorMarket.models.Product;
-import code.PriceComparatorMarket.models.ProductDiscount;
 import code.PriceComparatorMarket.repositories.CsvRepository;
 import code.PriceComparatorMarket.requests.DataPointsRequest;
 import lombok.AllArgsConstructor;
@@ -9,24 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @AllArgsConstructor
 @Service
 public class DataPointsService {
-
     @Autowired
     private final CsvRepository<Product> productRepository;
 
     @Autowired
     private final ProductDiscountService productDiscountService;
 
-    public ResponseEntity<?> filterByProductId(DataPointsRequest request, String productId) {
+    public ResponseEntity<?> filterByProductId(DataPointsRequest request) {
 
         if (request.getStartDate().isAfter(request.getEndDate())) {
             return ResponseEntity
@@ -47,7 +43,7 @@ public class DataPointsService {
         ///       }
         ///       ...
         ///   }
-        Map<LocalDate, Map<String, HashMap<String, Double>>> returnedData = new HashMap<>();
+        Map<LocalDate, Map<String, List<Product>>> returnedData = new HashMap<>();
 
 
         /// 1. First is a loop over all the dates, and getting all products from the repository with each date
@@ -55,15 +51,10 @@ public class DataPointsService {
         /// 3. Then, if applicable, the discount will be applied
         /// 4. Then, in the returnedData Map, will be put the current looped date as a key
         /// 5. Then the inside Map will be handled (details below)
-
         allDates.forEach(d -> {
-            /// pentru un LocalDate, ex: 2025-05-01 -> sa caute toate produsele din fisierele din data aceea,
-            /// voi avea un List<Product> -> apoi se vor filtra doar acelea care apartin categoriei
-            /// voi avea un List<Product> al categoriei
-            /// apoi pentru fiecare se va aplica discount, daca se poate
-            /// apoi grupez in functie de magazin
-            List<Product> listPD = productRepository.loadProductsByDate(d).stream()
-                    .filter(p -> p.getProductId().equalsIgnoreCase(productId))
+            List<Product> listP = productRepository.loadAllProducts().stream()
+                    .filter(p -> p.getProductId().equalsIgnoreCase(request.getProductId()))
+                    .filter(p -> !p.getDate().isAfter(d) && !p.getDate().isBefore(d.minusDays(6)))
                     .peek(p -> System.out.println("ID: " + p.getProductId() + ", " + p.getProductCategory()))
                     .peek(p -> productDiscountService.applyDiscount(p, d))
                     .toList();
@@ -74,12 +65,12 @@ public class DataPointsService {
             /// extract the inside Map of the current date
             /// this works and you can handle it separately because the same address from memory is kept,
             /// even if the value of returnedData.get(d) is stored in another variable
-            Map<String, HashMap<String, Double>> storeMap = returnedData.get(d);
+            Map<String, List<Product>> storeMap = returnedData.get(d);
 
-            listPD.forEach(p -> {
-                storeMap.computeIfAbsent(p.getStore(), k -> new HashMap<>());
-                HashMap<String, Double> brandNameMap = storeMap.get(p.getStore());
-                brandNameMap.put(p.getProductName(), p.getPrice());
+            listP.forEach(p -> {
+                storeMap.computeIfAbsent(p.getStore(), k -> new ArrayList<>());
+                List<Product> brandNameMap = storeMap.get(p.getStore());
+                brandNameMap.add(new Product(p.getProductId(), p.getProductName(), p.getPackageQuantity(), p.getPackageUnit(), p.getPrice()));
             });
         });
 
@@ -95,8 +86,7 @@ public class DataPointsService {
     /// The same reasoning from 'filterByCategory' method is applied here as well
     /// The only difference is made by the filter coming from the second parameter of the method,
     /// and the way the data is rendered to frontend afterward
-
-    public ResponseEntity<?> filterByCategory(DataPointsRequest request, String category) {
+    public ResponseEntity<?> filterByCategory(DataPointsRequest request) {
 
         if (request.getStartDate().isAfter(request.getEndDate())) {
             return ResponseEntity
@@ -105,22 +95,23 @@ public class DataPointsService {
         }
 
         Stream<LocalDate> allDates = request.getStartDate().datesUntil(request.getEndDate().plusDays(1));
-        Map<LocalDate, Map<String, HashMap<String, Double>>> returnedData = new HashMap<>();
+        Map<LocalDate, Map<String, List<Product>>> returnedData = new HashMap<>();
 
         allDates.forEach(d -> {
-            List<Product> listPD = productRepository.loadProductsByDate(d).stream()
-                    .filter(p -> p.getProductCategory().equalsIgnoreCase(category))
+            List<Product> listP = productRepository.loadAllProducts().stream()
+                    .filter(p -> p.getProductCategory().equalsIgnoreCase(request.getCategory()))
+                    .filter(p -> !p.getDate().isAfter(d) && !p.getDate().isBefore(d.minusDays(6)))
                     .peek(p -> System.out.println("ID: " + p.getProductId() + ", " + p.getProductCategory()))
                     .peek(p -> productDiscountService.applyDiscount(p, d))
                     .toList();
 
             returnedData.putIfAbsent(d, new HashMap<>());
-            Map<String, HashMap<String, Double>> storeMap = returnedData.get(d);
+            Map<String, List<Product>> storeMap = returnedData.get(d);
 
-            listPD.forEach(p -> {
-                storeMap.computeIfAbsent(p.getStore(), k -> new HashMap<>());
-                HashMap<String, Double> brandNameMap = storeMap.get(p.getStore());
-                brandNameMap.put(p.getProductName(), p.getPrice());
+            listP.forEach(p -> {
+                storeMap.computeIfAbsent(p.getStore(), k -> new ArrayList<>());
+                List<Product> brandNameMap = storeMap.get(p.getStore());
+                brandNameMap.add(new Product(p.getProductId(), p.getProductName(), p.getPackageQuantity(), p.getPackageUnit(), p.getPrice()));
             });
         });
 
@@ -136,8 +127,7 @@ public class DataPointsService {
     /// The same reasoning from 'filterByCategory' method is applied here as well
     /// The only difference is made by the filter coming from the second parameter of the method,
     /// and the way the data is rendered to frontend afterward
-
-    public ResponseEntity<?> filterByStore(DataPointsRequest request, String store) {
+    public ResponseEntity<?> filterByStore(DataPointsRequest request) {
 
         if (request.getStartDate().isAfter(request.getEndDate())) {
             return ResponseEntity
@@ -146,22 +136,23 @@ public class DataPointsService {
         }
 
         Stream<LocalDate> allDates = request.getStartDate().datesUntil(request.getEndDate().plusDays(1));
-        Map<LocalDate, Map<String, HashMap<String, Double>>> returnedData = new HashMap<>();
+        Map<LocalDate, Map<String, List<Product>>> returnedData = new HashMap<>();
 
         allDates.forEach(d -> {
-            List<Product> listPD = productRepository.loadProductsByDate(d).stream()
-                    .filter(p -> p.getStore().equalsIgnoreCase(store))
+            List<Product> listP = productRepository.loadAllProducts().stream()
+                    .filter(p -> p.getStore().equalsIgnoreCase(request.getStore()))
+                    .filter(p -> !p.getDate().isAfter(d) && !p.getDate().isBefore(d.minusDays(6)))
                     .peek(p -> System.out.println("ID: " + p.getProductId() + ", " + p.getProductCategory()))
                     .peek(p -> productDiscountService.applyDiscount(p, d))
                     .toList();
 
             returnedData.putIfAbsent(d, new HashMap<>());
-            Map<String, HashMap<String, Double>> categoryMap = returnedData.get(d);
+            Map<String, List<Product>> categoryMap = returnedData.get(d);
 
-            listPD.forEach(p -> {
-                categoryMap.computeIfAbsent(p.getProductCategory(), k -> new HashMap<>());
-                HashMap<String, Double> brandNameMap = categoryMap.get(p.getProductCategory());
-                brandNameMap.put(p.getProductName(), p.getPrice());
+            listP.forEach(p -> {
+                categoryMap.computeIfAbsent(p.getProductCategory(), k -> new ArrayList<>());
+                List<Product> brandNameMap = categoryMap.get(p.getProductCategory());
+                brandNameMap.add(new Product(p.getProductId(), p.getProductName(), p.getPackageQuantity(), p.getPackageUnit(), p.getPrice()));
             });
         });
 
@@ -177,8 +168,7 @@ public class DataPointsService {
     /// The same reasoning from 'filterByCategory' method is applied here as well
     /// The only difference is made by the filter coming from the second parameter of the method,
     /// and the way the data is rendered to frontend afterward
-
-    public ResponseEntity<?> filterByBrand(DataPointsRequest request, String brand) {
+    public ResponseEntity<?> filterByBrand(DataPointsRequest request) {
 
         if (request.getStartDate().isAfter(request.getEndDate())) {
             return ResponseEntity
@@ -187,22 +177,23 @@ public class DataPointsService {
         }
 
         Stream<LocalDate> allDates = request.getStartDate().datesUntil(request.getEndDate().plusDays(1));
-        Map<LocalDate, Map<String, HashMap<String, Double>>> returnedData = new HashMap<>();
+        Map<LocalDate, Map<String, List<Product>>> returnedData = new HashMap<>();
 
         allDates.forEach(d -> {
-            List<Product> listPD = productRepository.loadProductsByDate(d).stream()
-                    .filter(p -> p.getBrand().equalsIgnoreCase(brand))
+            List<Product> listP = productRepository.loadAllProducts().stream()
+                    .filter(p -> p.getBrand().equalsIgnoreCase(request.getBrand()))
+                    .filter(p -> !p.getDate().isAfter(d) && !p.getDate().isBefore(d.minusDays(6)))
                     .peek(p -> System.out.println("ID: " + p.getProductId() + ", " + p.getProductCategory()))
                     .peek(p -> productDiscountService.applyDiscount(p, d))
                     .toList();
 
             returnedData.putIfAbsent(d, new HashMap<>());
-            Map<String, HashMap<String, Double>> storeMap = returnedData.get(d);
+            Map<String, List<Product>> storeMap = returnedData.get(d);
 
-            listPD.forEach(p -> {
-                storeMap.computeIfAbsent(p.getStore(), k -> new HashMap<>());
-                HashMap<String, Double> brandNameMap = storeMap.get(p.getStore());
-                brandNameMap.put(p.getProductName(), p.getPrice());
+            listP.forEach(p -> {
+                storeMap.computeIfAbsent(p.getStore(), k -> new ArrayList<>());
+                List<Product> brandNameMap = storeMap.get(p.getStore());
+                brandNameMap.add(new Product(p.getProductId(), p.getProductName(), p.getPackageQuantity(), p.getPackageUnit(), p.getPrice()));
             });
         });
 
