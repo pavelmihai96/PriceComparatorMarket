@@ -26,6 +26,7 @@ public class ProductDiscountRepository implements CsvRepository<ProductDiscount>
         this.folder = Path.of(folderPath);
     }
 
+    /// loadAllProducts method returns a list of ProductDiscounts objects after reading them with read method
     @Override
     public List<ProductDiscount> loadAllProducts() {
         List<ProductDiscount> allProducts = new ArrayList<>();
@@ -42,6 +43,8 @@ public class ProductDiscountRepository implements CsvRepository<ProductDiscount>
         return allProducts;
     }
 
+    /// loadLastProducts method returns a list of ProductDiscounts objects after they are filtered based on creation time property in FileExplorer
+    /// the filter is based on hours parameter
     @Override
     public List<ProductDiscount> loadLastProducts(Date date, Double hours) {
         List<ProductDiscount> allProducts = new ArrayList<>();

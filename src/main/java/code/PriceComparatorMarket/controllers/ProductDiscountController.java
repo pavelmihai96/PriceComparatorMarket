@@ -1,14 +1,10 @@
 package code.PriceComparatorMarket.controllers;
 
-import code.PriceComparatorMarket.models.ProductDiscount;
-import code.PriceComparatorMarket.requests.BasketRequest;
+import code.PriceComparatorMarket.requests.DiscountRequest;
 import code.PriceComparatorMarket.services.ProductDiscountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -16,13 +12,13 @@ import java.util.List;
 public class ProductDiscountController {
     private final ProductDiscountService productDiscountService;
 
-    @PostMapping("/highest")
-    public ResponseEntity<?> getHighestProductDiscounts(@RequestBody LocalDate date) {
-        return productDiscountService.getHighestProductDiscounts(date);
+    @GetMapping("/highest")
+    public ResponseEntity<?> getHighestProductDiscounts(@RequestBody DiscountRequest request) {
+        return productDiscountService.getHighestProductDiscounts(request);
     }
 
-    @GetMapping("/last/{hours}")
-    public ResponseEntity<?> getLastProductDiscounts(@PathVariable Double hours) {
-        return productDiscountService.getLastProductDiscounts(hours);
+    @GetMapping("/hours")
+    public ResponseEntity<?> getLastProductDiscounts(@RequestBody DiscountRequest request) {
+        return productDiscountService.getLastProductDiscounts(request);
     }
 }

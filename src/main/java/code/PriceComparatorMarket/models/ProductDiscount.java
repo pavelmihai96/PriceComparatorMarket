@@ -26,6 +26,5 @@ public class ProductDiscount {
     /// additional members needed
     @JsonIgnore
     private LocalDate date;
-    @JsonIgnore
     private String store;
 }

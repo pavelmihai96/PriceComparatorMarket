@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 @Component
 public class ProductDiscountCsvParser implements CsvParser<ProductDiscount> {
-
+    /// read method reads the csv and maps it to a ProductDiscount object
     @Override
     public List<ProductDiscount> read(Path file) {
         List<ProductDiscount> discounts = new ArrayList<>();
@@ -23,13 +23,13 @@ public class ProductDiscountCsvParser implements CsvParser<ProductDiscount> {
             reader.readNext();
             while ((line = reader.readNext()) != null) {
                 if (line.length < 9) {
-                    System.err.println("ProductDiscountCsvParser: Invalid line in CSV file: " + String.join(",", line));
+                    System.err.println("ProductDiscountCsvParser-Invalid line in CSV file: " + String.join(",", line));
                     continue; // Skip invalid lines
                 }
                 try {
                     discounts.add(createProductFromLine(line, file));
                 } catch (NumberFormatException ex) {
-                    System.err.println("From product discount: " + String.join(",", line));
+                    System.err.println("ProductDiscountCsvParser-From product discount: " + String.join(",", line));
                 }
             }
         } catch (Exception e) {
@@ -71,5 +71,5 @@ public class ProductDiscountCsvParser implements CsvParser<ProductDiscount> {
 
     ///  not used
     @Override
-    public void write(Path file, List<PriceAlertRequest> request) {}
+    public void writePriceAlert(Path file, List<PriceAlertRequest> request) {}
 }

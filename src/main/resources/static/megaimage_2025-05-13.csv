@@ -1,0 +1,35 @@
+﻿product_id,product_name,product_category,brand,package_quantity,package_unit,price,currency
+P051,lapte UHT 3.5%,lactate,Metro Chef,1,l,7.2,RON
+P147,lapte UHT 3.5%,lactate,Metro Chef,1.5,l,13,RON
+P053,ouă M,ouă,Metro Chef,10,buc,14,RON
+P054,brânză feta,lactate,Metro Chef,300,g,12.1,RON
+P055,baghetă albă,panificație,Fine Life,400,g,4.3,RON
+P056,roșii rondele,legume și fructe,Generic,500,g,6.1,RON
+P057,carne tocată porc/carne vită,carne,Metro Chef,1,kg,27.5,RON
+P058,penne rigate,paste făinoase,ARO,500,g,3.2,RON
+P146,carne tocată porc/carne vită,carne,Metro Chef,0.5,kg,25,RON
+P060,apă minerală carbogazoasă,băuturi,Metro Chef,2,l,3.8,RON
+P062,napolitane cu ciocolată,gustări,Fine Life,180,g,5,RON
+P063,smântână 20%,lactate,ARO,200,g,4,RON
+P064,unt 65%,lactate,Fine Life,250,g,8.1,RON
+P066,hârtie igienică reciclată,produse de menaj,ARO,8,role,15.5,RON
+P067,detergent lichid color,produse de menaj,Fine Life,2,l,26.8,RON
+P068,iaurt cu fructe pădure,lactate,Fine Life,300,g,3.9,RON
+P069,iaurt grecesc,lactate,Carrefour,600,g,5.3,RON
+P070,cereale cu ciocolată,mic dejun,ARO,375,g,6.9,RON
+P143,iaurt cu fructe pădure,lactate,Fine Life,500,g,5,RON
+P088,ouă bio,ouă,Carrefour Bio,6,buc,13,RON
+P089,telemea de vacă,lactate,Carrefour,300,g,10.6,RON
+P144,ouă bio,ouă,Carrefour Bio,10,buc,20,RON
+P091,roșii cherry,legume și fructe,Carrefour,250,g,8.2,RON
+P092,piept pui file,carne,Carrefour,1,kg,29.8,RON
+P093,spaghetti nr.3,paste făinoase,Carrefour,500,g,4,RON
+P094,zahăr tos,alimente de bază,Carrefour,1,kg,4.95,RON
+P095,apă plată,băuturi,Carrefour,2,l,3.7,RON
+P115,lapte bio 3.5%,lactate,Gusturi Românești,1,l,7.9,RON
+P116,iaurt natur 2%,lactate,Zuzu,400,g,4.1,RON
+P117,ouă free range,ouă,Ferma Baciului,10,buc,15,RON
+P145,roșii cherry,legume și fructe,Carrefour,500,g,10,RON
+P119,baghetă rustică,panificație,Mega Apetit,400,g,4.75,RON
+P120,castraveți cornichon,legume și fructe,Proaspăt,500,g,6.3,RON
+P121,carne tocată vită,carne,Rewe Best,1,kg,33.8,RON

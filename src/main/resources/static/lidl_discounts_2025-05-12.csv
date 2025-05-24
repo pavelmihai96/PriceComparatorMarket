@@ -1,0 +1,21 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P001,lapte integral 3.5%,Pilos,1,l,lactate,5/11/2025,5/17/2025,6
+P003,ouă Ogradă,Ogradă,10,buc,ouă,5/10/2025,5/19/2025,17
+P004,brânză telemea vacă,Pilos,0.3,kg,lactate,5/13/2025,5/19/2025,14
+P005,pâine albă feliată,Chef Select,500,g,panificație,5/10/2025,5/18/2025,22
+P007,piept de pui dezosat,Pikok,1,kg,carne,5/13/2025,5/20/2025,19
+P008,spaghetti,Combino,500,g,paste făinoase,5/12/2025,5/19/2025,12
+P010,apă plată,Saguaro,2,l,băuturi,5/11/2025,5/18/2025,7
+P011,cafea măcinată,Bellarom,0.25,kg,cafea,5/13/2025,5/17/2025,10
+P012,ciocolată neagră 70%,Fin Carre,100,g,gustări,5/10/2025,5/19/2025,15
+P014,unt 82%,Pilos,500,g,lactate,5/11/2025,5/20/2025,5
+P017,hârtie igienică 3 straturi,Floralys,10,role,produse de menaj,5/12/2025,5/19/2025,25
+P020,lapte integral 3.5%,Pilos,1.5,l,lactate,5/13/2025,5/18/2025,9
+P021,granola cu nuci,Crownfield,300,g,mic dejun,5/11/2025,5/19/2025,4
+P023,săpun lichid antibacterian,Cien,500,ml,îngrijire personală,5/10/2025,5/17/2025,20
+P024,crenvurști pui,Pikok,300,g,carne,5/12/2025,5/20/2025,18
+P025,brânză topită feliată,Pilos,150,g,lactate,5/11/2025,5/17/2025,11
+P026,lapte UHT 1.5%,Zuzu,1,l,lactate,5/13/2025,5/18/2025,6
+P030,piept de curcan,Aldis,1,kg,carne,5/12/2025,5/20/2025,8
+P034,cafea instant,Nescafé,200,g,cafea,5/10/2025,5/18/2025,13
+P037,unt President 82%,President,250,g,lactate,5/12/2025,5/19/2025,16

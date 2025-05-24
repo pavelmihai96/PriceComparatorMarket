@@ -1,0 +1,26 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P026,lapte UHT 1.5%,Zuzu,1,l,lactate,5/10/2025,5/18/2025,6
+P029,roșii prunișoare,Generic,500,g,legume și fructe,5/11/2025,5/19/2025,10
+P030,piept de curcan,Aldis,1,kg,carne,5/12/2025,5/20/2025,8
+P031,paste penne,Barilla,500,g,paste făinoase,5/10/2025,5/17/2025,5
+P033,apă minerală,Borsec,2,l,băuturi,5/11/2025,5/19/2025,7
+P034,cafea instant,Nescafé,200,g,cafea,5/12/2025,5/18/2025,13
+P036,smântână 12%,LaDorna,200,g,lactate,5/13/2025,5/20/2025,9
+P039,detergent capsule,Ariel,20,buc,produse de menaj,5/10/2025,5/18/2025,14
+P040,iaurt Activia căpșuni,Danone,120,g,lactate,5/12/2025,5/19/2025,4
+P054,brânză feta,Metro Chef,300,g,lactate,5/10/2025,5/17/2025,10
+P055,baghetă albă,Fine Life,400,g,panificație,5/13/2025,5/20/2025,5
+P057,carne tocată porc/carne vită,Metro Chef,1,kg,carne,5/11/2025,5/18/2025,12
+P058,penne rigate,ARO,500,g,paste făinoase,5/12/2025,5/19/2025,6
+P060,apă minerală carbogazoasă,Metro Chef,2,l,băuturi,5/13/2025,5/20/2025,7
+P062,napolitane cu ciocolată,Fine Life,180,g,gustări,5/10/2025,5/17/2025,9
+P063,smântână 20%,ARO,200,g,lactate,5/11/2025,5/18/2025,8
+P064,unt 65%,Fine Life,250,g,lactate,5/13/2025,5/20/2025,7
+P066,hârtie igienică reciclată,ARO,8,role,produse de menaj,5/12/2025,5/19/2025,6
+P068,iaurt cu fructe pădure,Fine Life,300,g,lactate,5/10/2025,5/17/2025,11
+P070,cereale cu ciocolată,ARO,375,g,mic dejun,5/11/2025,5/18/2025,5
+P072,săpun solid,Metro Chef,4,buc,îngrijire personală,5/13/2025,5/20/2025,13
+P073,cârnați afumați,Metro Chef,400,g,carne,5/12/2025,5/19/2025,15
+P075,pesmet alb,Fine Life,500,g,alimente de bază,5/11/2025,5/18/2025,4
+P077,apă plată,Fine Life,8,l,băuturi,5/10/2025,5/17/2025,6
+P082,șampon păr normal,ARO,500,ml,îngrijire personală,5/13/2025,5/20/2025,18

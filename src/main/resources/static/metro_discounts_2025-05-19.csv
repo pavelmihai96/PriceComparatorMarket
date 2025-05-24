@@ -1,0 +1,21 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P026,lapte UHT 1.5%,Zuzu,1,l,lactate,5/17/2025,5/25/2025,5
+P027,ouă M,Ferma Veche,10,buc,ouă,5/18/2025,5/26/2025,8
+P030,piept de curcan,Aldis,1,kg,carne,5/19/2025,5/27/2025,10
+P033,apă minerală,Borsec,2,l,băuturi,5/17/2025,5/24/2025,6
+P034,cafea instant,Nescafé,200,g,cafea,5/20/2025,5/27/2025,11
+P036,smântână 12%,LaDorna,200,g,lactate,5/18/2025,5/25/2025,4
+P037,unt President 82%,President,250,g,lactate,5/19/2025,5/26/2025,9
+P039,detergent capsule,Ariel,20,buc,produse de menaj,5/17/2025,5/25/2025,13
+P054,brânză feta,Metro Chef,300,g,lactate,5/18/2025,5/26/2025,7
+P058,penne rigate,ARO,500,g,paste făinoase,5/20/2025,5/27/2025,5
+P060,apă minerală carbogazoasă,Metro Chef,2,l,băuturi,5/17/2025,5/24/2025,6
+P062,napolitane cu ciocolată,Fine Life,180,g,gustări,5/19/2025,5/26/2025,8
+P063,smântână 20%,ARO,200,g,lactate,5/18/2025,5/25/2025,6
+P064,unt 65%,Fine Life,250,g,lactate,5/20/2025,5/27/2025,7
+P068,iaurt cu fructe pădure,Fine Life,300,g,lactate,5/17/2025,5/24/2025,5
+P070,cereale cu ciocolată,ARO,375,g,mic dejun,5/18/2025,5/26/2025,10
+P072,săpun solid,Metro Chef,4,buc,îngrijire personală,5/20/2025,5/27/2025,14
+P073,cârnați afumați,Metro Chef,400,g,carne,5/19/2025,5/26/2025,12
+P077,apă plată,Fine Life,8,l,băuturi,5/17/2025,5/25/2025,4
+P082,șampon păr normal,ARO,500,ml,îngrijire personală,5/18/2025,5/24/2025,15

@@ -1,0 +1,20 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P053,ouă M,Metro Chef,10,buc,ouă,5/14/2025,5/22/2025,21
+P067,detergent lichid color,Fine Life,2,l,produse de menaj,5/12/2025,5/20/2025,16
+P092,piept pui file,Carrefour,1,kg,carne,5/15/2025,5/21/2025,9
+P091,roșii cherry,Carrefour,250,g,legume și fructe,5/13/2025,5/19/2025,8
+P064,unt 65%,Fine Life,250,g,lactate,5/15/2025,5/21/2025,11
+P110,orez basmati,Carrefour,1,kg,alimente de bază,5/12/2025,5/23/2025,7
+P062,napolitane cu ciocolată,Fine Life,180,g,gustări,5/14/2025,5/22/2025,13
+P058,penne rigate,ARO,500,g,paste făinoase,5/13/2025,5/21/2025,6
+P059,zahăr brun,Fine Life,1,kg,alimente de bază,5/12/2025,5/20/2025,10
+P105,șampon păr normal,Carrefour,400,ml,îngrijire personală,5/15/2025,5/22/2025,19
+P086,lapte proaspăt 3.5%,Carrefour,1,l,lactate,5/12/2025,5/23/2025,15
+P101,hârtie igienică 4 straturi,Carrefour,12,role,produse de menaj,5/13/2025,5/21/2025,5
+P054,brânză feta,Metro Chef,300,g,lactate,5/12/2025,5/23/2025,20
+P070,cereale cu ciocolată,ARO,375,g,mic dejun,5/14/2025,5/20/2025,14
+P100,cereale cu fructe,Carrefour,500,g,mic dejun,5/15/2025,5/22/2025,18
+P060,apă minerală carbogazoasă,Metro Chef,2,l,băuturi,5/12/2025,5/23/2025,4
+P063,smântână 20%,ARO,200,g,lactate,5/12/2025,5/22/2025,7
+P052,iaurt natural 3%,ARO,400,g,lactate,5/14/2025,5/21/2025,23
+P089,telemea de vacă,Carrefour,300,g,lactate,5/15/2025,5/23/2025,10

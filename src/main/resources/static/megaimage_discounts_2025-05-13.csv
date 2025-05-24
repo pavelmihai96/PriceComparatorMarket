@@ -1,0 +1,26 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P051,lapte UHT 3.5%,Metro Chef,1,l,lactate,5/11/2025,5/20/2025,7
+P053,ouă M,Metro Chef,10,buc,ouă,5/12/2025,5/19/2025,15
+P054,brânză feta,Metro Chef,300,g,lactate,5/13/2025,5/18/2025,10
+P056,roșii rondele,Generic,500,g,legume și fructe,5/14/2025,5/21/2025,5
+P057,carne tocată porc/carne vită,Metro Chef,1,kg,carne,5/13/2025,5/20/2025,9
+P058,penne rigate,ARO,500,g,paste făinoase,5/11/2025,5/18/2025,6
+P060,apă minerală carbogazoasă,Metro Chef,2,l,băuturi,5/12/2025,5/20/2025,12
+P062,napolitane cu ciocolată,Fine Life,180,g,gustări,5/14/2025,5/19/2025,8
+P063,smântână 20%,ARO,200,g,lactate,5/13/2025,5/20/2025,4
+P064,unt 65%,Fine Life,250,g,lactate,5/11/2025,5/19/2025,11
+P066,hârtie igienică reciclată,ARO,8,role,produse de menaj,5/12/2025,5/21/2025,14
+P067,detergent lichid color,Fine Life,2,l,produse de menaj,5/13/2025,5/20/2025,17
+P068,iaurt cu fructe pădure,Fine Life,300,g,lactate,5/14/2025,5/19/2025,7
+P070,cereale cu ciocolată,ARO,375,g,mic dejun,5/12/2025,5/21/2025,13
+P088,ouă bio,Carrefour Bio,6,buc,ouă,5/13/2025,5/20/2025,16
+P089,telemea de vacă,Carrefour,300,g,lactate,5/11/2025,5/19/2025,18
+P091,roșii cherry,Carrefour,250,g,legume și fructe,5/14/2025,5/20/2025,9
+P092,piept pui file,Carrefour,1,kg,carne,5/13/2025,5/21/2025,20
+P093,spaghetti nr.3,Carrefour,500,g,paste făinoase,5/12/2025,5/18/2025,5
+P094,zahăr tos,Carrefour,1,kg,alimente de bază,5/11/2025,5/20/2025,6
+P095,apă plată,Carrefour,2,l,băuturi,5/13/2025,5/21/2025,10
+P115,lapte bio 3.5%,Gusturi Românești,1,l,lactate,5/12/2025,5/19/2025,21
+P117,ouă free range,Ferma Baciului,10,buc,ouă,5/14/2025,5/20/2025,19
+P119,baghetă rustică,Mega Apetit,400,g,panificație,5/13/2025,5/21/2025,8
+P121,carne tocată vită,Rewe Best,1,kg,carne,5/11/2025,5/20/2025,25

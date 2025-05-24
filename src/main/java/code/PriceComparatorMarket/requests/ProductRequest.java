@@ -3,6 +3,7 @@ package code.PriceComparatorMarket.requests;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -10,8 +11,6 @@ import java.time.LocalDate;
 @Setter
 @Builder
 public class ProductRequest {
-    private String productName;
-    private String productCategory;
-    private String brand;
+    private List<ProductCustom> products;
     private LocalDate date;
 }

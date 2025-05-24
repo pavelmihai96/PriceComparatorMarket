@@ -3,15 +3,14 @@ package code.PriceComparatorMarket.services;
 import code.PriceComparatorMarket.models.Product;
 import code.PriceComparatorMarket.models.ProductDiscount;
 import code.PriceComparatorMarket.repositories.CsvRepository;
+import code.PriceComparatorMarket.requests.DiscountRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -19,45 +18,40 @@ public class ProductDiscountService {
     private final CsvRepository<ProductDiscount> productDiscountRepository;
 
     public void applyDiscount(Product p, LocalDate date) {
-        //System.out.println("Inainte de apelul loadAllProducts pentru dicounts!");
-
         List<ProductDiscount> listPD = productDiscountRepository.loadAllProducts().stream()
-                //.peek(d -> System.out.println("############Discount inainte de filtrare cu id si magazin: " + d.getProductId() + ", " + d.getStore() + ", " + d.getFromDate() + ", " + d.getToDate() + ", " + d.getDate() + ", " + d.getPercentageOfDiscount()))
                 .filter(d -> d.getProductId().equalsIgnoreCase(p.getProductId()))
                 .filter(d -> d.getStore().equalsIgnoreCase(p.getStore()))
                 .filter(d -> !date.isBefore(d.getFromDate()) && !date.isAfter(d.getToDate()))
-                //.peek(d -> System.out.println("############Discount dupa filtrare cu id si magazin si perioada: " + d.getProductId() + ", " + d.getStore() + ", " + d.getFromDate() + ", " + d.getToDate() + ", " + d.getDate() + ", " + d.getPercentageOfDiscount()))
                 .toList();
 
-        /// aplica discount pentru cel mai recent produs, si il ia pe primul in cazul in care sunt duplicate
+        /// applies the discount for the most recent product, and in case there are duplicates, it takes the first one
         listPD.stream()
                 .max(Comparator.comparing(ProductDiscount::getDate))
                 .ifPresent(d -> p.setPrice(p.getPrice() * (1 - d.getPercentageOfDiscount() / 100.0)));
     }
 
-    public ResponseEntity<?> getHighestProductDiscounts(LocalDate date) {
+    public ResponseEntity<?> getHighestProductDiscounts(DiscountRequest request) {
         List<ProductDiscount> listPD = productDiscountRepository.loadAllProducts().stream()
-                .filter(pd -> !pd.getFromDate().isAfter(date) && !pd.getToDate().isBefore(date))
-                .peek(pd -> System.out.println("Product after date filter: " + pd.getProductId() + ", " + pd.getFromDate() + ", " + pd.getToDate() + ", Date of file: " + pd.getDate()))
+                .filter(pd -> !pd.getFromDate().isAfter(request.getDate()) && !pd.getToDate().isBefore(request.getDate()))
                 .toList();
 
         List<ProductDiscount> listPDSorted = listPD.stream()
                 .sorted(Comparator.comparing(ProductDiscount::getPercentageOfDiscount).reversed())
-                .collect(Collectors.toList());
+                .toList();
 
         /// return a message if not discounts are available; and discounts otherwise
         if (listPDSorted.isEmpty()) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("error", "No discounts were found on date: " + date.toString()));
+                    .body(Map.of("error", "No discounts were found on date: " + request.getDate().toString()));
         } else  {
             return ResponseEntity.ok().body(listPDSorted);
         }
     }
 
-    public ResponseEntity<?> getLastProductDiscounts(Double hours) {
+    public ResponseEntity<?> getLastProductDiscounts(DiscountRequest request) {
         Date currentDate = new Date();
-        List<ProductDiscount> listPD = productDiscountRepository.loadLastProducts(currentDate, hours);
+        List<ProductDiscount> listPD = productDiscountRepository.loadLastProducts(currentDate, request.getHours());
         Map<String, List<ProductDiscount>> listPDMap = new HashMap<>();
 
         /// setting a map of Store and Products with discounts before returning to the user
@@ -69,7 +63,7 @@ public class ProductDiscountService {
         if (listPD.isEmpty()) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("error", "No discounts were found on the last " + hours + " hours."));
+                    .body(Map.of("error", "No discounts were found on the last " + request.getHours() + " hours."));
         } else {
             return ResponseEntity.ok().body(listPDMap);
         }

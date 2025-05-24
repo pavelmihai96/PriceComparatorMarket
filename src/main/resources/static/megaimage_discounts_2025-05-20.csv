@@ -1,0 +1,26 @@
+﻿product_id,product_name,brand,package_quantity,package_unit,product_category,from_date,to_date,percentage_of_discount
+P051,lapte UHT 3.5%,Metro Chef,1,l,lactate,5/18/2025,5/27/2025,6
+P052,iaurt natural 3%,ARO,400,g,lactate,5/19/2025,5/26/2025,8
+P053,ouă M,Metro Chef,10,buc,ouă,5/20/2025,5/27/2025,12
+P054,brânză feta,Metro Chef,300,g,lactate,5/21/2025,5/28/2025,10
+P056,roșii rondele,Generic,500,g,legume și fructe,5/18/2025,5/25/2025,9
+P058,penne rigate,ARO,500,g,paste făinoase,5/19/2025,5/26/2025,4
+P059,zahăr brun,Fine Life,1,kg,alimente de bază,5/20/2025,5/27/2025,7
+P060,apă minerală carbogazoasă,Metro Chef,2,l,băuturi,5/21/2025,5/28/2025,5
+P061,cafea boabe,Metro Chef,1,kg,cafea,5/18/2025,5/26/2025,13
+P063,smântână 20%,ARO,200,g,lactate,5/20/2025,5/25/2025,11
+P064,unt 65%,Fine Life,250,g,lactate,5/19/2025,5/27/2025,10
+P066,hârtie igienică reciclată,ARO,8,role,produse de menaj,5/21/2025,5/28/2025,15
+P068,iaurt cu fructe pădure,Fine Life,300,g,lactate,5/18/2025,5/25/2025,6
+P069,iaurt grecesc,Carrefour,600,g,lactate,5/20/2025,5/27/2025,14
+P070,cereale cu ciocolată,ARO,375,g,mic dejun,5/19/2025,5/26/2025,7
+P086,lapte proaspăt 3.5%,Carrefour,1,l,lactate,5/18/2025,5/26/2025,9
+P088,ouă bio,Carrefour Bio,6,buc,ouă,5/21/2025,5/27/2025,17
+P089,telemea de vacă,Carrefour,300,g,lactate,5/19/2025,5/28/2025,12
+P092,piept pui file,Carrefour,1,kg,carne,5/20/2025,5/27/2025,18
+P094,zahăr tos,Carrefour,1,kg,alimente de bază,5/21/2025,5/28/2025,5
+P095,apă plată,Carrefour,2,l,băuturi,5/18/2025,5/25/2025,3
+P115,lapte bio 3.5%,Gusturi Românești,1,l,lactate,5/20/2025,5/28/2025,20
+P117,ouă free range,Ferma Baciului,10,buc,ouă,5/21/2025,5/28/2025,22
+P121,carne tocată vită,Rewe Best,1,kg,carne,5/18/2025,5/26/2025,25
+P125,cafea capsule espresso,Jacobs,100,g,cafea,5/19/2025,5/27/2025,16

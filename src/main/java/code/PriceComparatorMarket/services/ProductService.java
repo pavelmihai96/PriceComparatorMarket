@@ -1,12 +1,10 @@
 package code.PriceComparatorMarket.services;
 
 import code.PriceComparatorMarket.models.Product;
-import code.PriceComparatorMarket.models.ProductDiscount;
 import code.PriceComparatorMarket.repositories.CsvRepository;
 import code.PriceComparatorMarket.requests.PriceAlertRequest;
-import code.PriceComparatorMarket.requests.ProductRequest;
+import code.PriceComparatorMarket.requests.ProductCustom;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.opencsv.CSVReader;
 import java.io.FileReader;
@@ -47,28 +45,36 @@ public class ProductService {
     public Optional<Product> findBestOffer(String productId, LocalDate date) {
         return productRepository.loadAllProducts().stream()
                 .filter(p -> p.getProductId().equalsIgnoreCase(productId))
-
-                /// added this because it was possible to show a product from 1st when requesting on 8th, and it wasn't the case
+                /// Added this because it was possible to show a product from 1st when requesting on 8th, and it wasn't the case.
+                /// e.g. assuming that the flyers are added once a week, if I request from frontend on 2025-05-03, I should be able to see the products also from 2025-05-01.
+                /// But if I request from frontend on 2025-05-08, I shouldn't be able to see anything from 1st, because 7 days have past and new products are available.
+                ///
                 .filter(p -> !p.getDate().isAfter(date) && !p.getDate().isBefore(date.minusDays(6)))
-                /// .peek(p -> System.out.println("DEBUG---###After filter: " + p.getProductId() + ", " + p.getStore() + ", " + p.getDate() + ", " + p.getPrice() + "\n------"))
                 .peek(p -> productDiscountService.applyDiscount(p, date))
                 .min(Comparator.comparing(Product::getPrice));
     }
 
-    public Optional<Product> findBestValuePerUnit(ProductRequest request) {
+    /// findBestValuePerUnit checks all products which are equal in terms of name, category and brand, regardless of id
+    /// and it calculates for each of them the valuePerUnit.
+    /// Then it retrieves the best value, which is the minimum.
+    ///
+    public Optional<Product> findBestValuePerUnit(ProductCustom request, LocalDate date) {
         return productRepository.loadAllProducts().stream()
                 .filter(p -> p.getProductName().equalsIgnoreCase(request.getProductName())
                             &&  p.getProductCategory().equalsIgnoreCase(request.getProductCategory())
                             &&  p.getBrand().equalsIgnoreCase(request.getBrand()))
-                .peek(p -> System.out.println("After request filter: " + p.getProductId() + ", " + p.getProductName() + ", " + p.getPackageQuantity() + ", " + p.getPackageUnit() + ", " + p.getStore() + ", " + p.getDate()))
-                .filter(p -> !p.getDate().isAfter(request.getDate()) && !p.getDate().isBefore(request.getDate().minusDays(6)))
+                .filter(p -> !p.getDate().isAfter(date) && !p.getDate().isBefore(date.minusDays(6)))
                 .peek(p -> {
-                    productDiscountService.applyDiscount(p, request.getDate());
+                    productDiscountService.applyDiscount(p, date);
                     p.setValuePerUnit(calculateValuePerUnit(p.getPrice(), p.getPackageQuantity(), p.getPackageUnit()));
                 })
                 .min(Comparator.comparing(product -> Double.parseDouble(product.getValuePerUnit().split("\\sRON")[0])));
     }
 
+    /// checkPriceAlert checks all products that have id equal to the one coming from request and applies the discount.
+    /// Then it filters only the ones that have the prices lower or equal to the alert.
+    /// Then it retrieves the mininum value based on price.
+    ///
     public Optional<Product> checkPriceAlert(PriceAlertRequest request, LocalDate date) {
         return productRepository.loadAllProducts().stream()
                 .filter(p -> p.getProductId().equalsIgnoreCase(request.getProductId()))
@@ -80,6 +86,9 @@ public class ProductService {
                 .min(Comparator.comparing(Product::getPrice));
     }
 
+    /// calculateValuePerUnit method first transforms all other units to kg and l (e.g. ml, g)
+    /// Then it calculates the ratio and returns a string
+    ///
     public String calculateValuePerUnit(Double price, Double quantity, String unit) {
         if (Objects.equals(unit, "g")) {
             quantity /= 1000;
@@ -91,6 +100,6 @@ public class ProductService {
         }
 
         Double valuePerUnit = price / quantity;
-        return valuePerUnit + " RON/" + unit;
+        return valuePerUnit + " RON / " + unit;
     }
 }
