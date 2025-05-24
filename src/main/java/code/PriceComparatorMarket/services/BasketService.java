@@ -30,15 +30,19 @@ public class BasketService {
     /// 3. then that Product will be mapped
     /// 4. the method will return the Map or a message
     public ResponseEntity<?> costEfficient(List<String> products, LocalDate date) {
-        Map<String, List<Product>> listsOfProducts = new HashMap<>();
+        Map<String, List<Object>> listsOfProducts = new HashMap<>();
 
         for (String product : products) {
+            /// if a cost efficiency is found
             productService.findBestOffer(product, date).ifPresent(
             p -> {
                 /// add the pair { "store": Product }
-                //listsOfProducts.computeIfAbsent(p.getStore(), k -> new ArrayList<>()).add(new Product(p.getProductId(), p.getProductName(), p.getPackageQuantity(), p.getPackageUnit(), p.getPrice()));
                 listsOfProducts.computeIfAbsent(p.getStore(), k -> new ArrayList<>()).add(p);
             });
+
+            if (productService.findBestOffer(product, date).isEmpty()) {
+                listsOfProducts.computeIfAbsent(product, k -> new ArrayList<>()).add("This product was not found.");
+            }
         }
 
         /// check if there is anything to be returned from listsOfProducts
@@ -57,14 +61,19 @@ public class BasketService {
     /// 3. then that Product will be mapped
     /// 4. the method will return the Map or a message
     public ResponseEntity<?> bestBuy(ProductRequest request) {
-        Map<String, List<Product>> listsOfProducts = new HashMap<>();
+        Map<String, List<Object>> listsOfProducts = new HashMap<>();
 
         for (ProductCustom product : request.getProducts()) {
+            /// if a best value per unit is found
             productService.findBestValuePerUnit(product, request.getDate()).ifPresent(
                     p -> {
                         /// add the pair { "store": Product }
                         listsOfProducts.computeIfAbsent(p.getStore(), k -> new ArrayList<>()).add(p);
                     });
+
+            if (productService.findBestValuePerUnit(product, request.getDate()).isEmpty()) {
+                listsOfProducts.computeIfAbsent(product.getProductName(), k -> new ArrayList<>()).add("This product was not found.");
+            }
         }
 
         /// check if there is anything to be returned from listsOfProducts
@@ -89,12 +98,14 @@ public class BasketService {
         Map<String, List<Object>> listsOfProducts = new HashMap<>();
 
         for (PriceAlertRequest pr : request) {
+            /// if a price alert is found
             productService.checkPriceAlert(pr, currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()).ifPresent(
                     p -> {
                         /// add the pair { "store": Product }
                         listsOfProducts.computeIfAbsent(p.getStore(), k -> new ArrayList<>()).add(new Product(p.getProductId(), p.getProductName(), p.getPackageQuantity(), p.getPackageUnit(), p.getPrice()));
                     });
 
+            /// if a price alert is not found
             /// add the pair { "productId" : message }
             if (productService.checkPriceAlert(pr, currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()).isEmpty()) {
                 listsOfProducts.computeIfAbsent(pr.getProductId(), k -> new ArrayList<>()).add("Price didn't reach the set alert.");
